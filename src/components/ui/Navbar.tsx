@@ -1,4 +1,4 @@
-import type { FC } from 'react'
+
 import { signIn, signOut, useSession } from "next-auth/react";
 import { SiNike } from 'react-icons/si'
 import Image from "next/image";
@@ -8,11 +8,8 @@ import type { ProductType } from "~/Types";
 import MaxWidthWrapper from "../MaxWidthWrapper";
 
 
-interface NavbarProps {
 
-}
-
-const Navbar: FC<NavbarProps> = ({ }) => {
+const Navbar = () => {
     const cart = useAppSelector((state) => state.cart);
     const totalPrice = cart.reduce((acc: number, product: ProductType) => {
         acc += product.price * product.quantity;
@@ -51,7 +48,6 @@ const Navbar: FC<NavbarProps> = ({ }) => {
                     {!session ? <button onClick={() => signIn()} className="btn  btn-primary">Login</button>
                         : (<div className="dropdown dropdown-end">
                             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-
                                 <div className="w-10 rounded-full">
                                     <Image src={session?.user.image} width={500} height={500} priority alt={session?.user.name} />
                                 </div>

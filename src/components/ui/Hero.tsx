@@ -11,11 +11,8 @@ const SliderImages = [SliderOne, SliderTwo, SliderThree]
 
 
 
-interface HeroProps {
 
-}
-
-const Hero: FC<HeroProps> = ({ }) => {
+const Hero: FC = () => {
     return (
         <Carousel
             autoPlay={true}

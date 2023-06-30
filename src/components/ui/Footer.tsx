@@ -3,11 +3,9 @@ import { siteConfig } from "~/config/site"
 import MaxWidthWrapper from "../MaxWidthWrapper"
 
 
-interface FooterProps {
 
-}
 
-const Footer: FC<FooterProps> = ({ }) => {
+const Footer: FC = () => {
     return (
         <footer className="footer bg-base-200  text-base-content">
             <MaxWidthWrapper className="footer py-20 bg-base-200 text-base-content">
