@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { NextPage } from 'next'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -12,11 +13,13 @@ export type Product = {
     price: number,
     category: string,
 }
-const Dashborad = () => {
+const Dashborad: NextPage = () => {
     const { data: session, status } = useSession()
     const router = useRouter();
     const date = new Date();
     const [addError, setAddError] = useState<string>('');
+    const [uploadError, setUploadError] = useState<string>();
+    const [thumbnail, setThumbnail] = useState<string>()
     const [product, setProduct] = useState<Product>({
         id: date.getMilliseconds(),
         title: "",
@@ -24,13 +27,8 @@ const Dashborad = () => {
         price: 0,
         category: "",
     })
-    const [uploadError, setUploadError] = useState<string>();
-    const [thumbnail, setThumbnail] = useState<string>('')
     const { title, id, description, price, category } = product
-    const [images, setImages] = useState<{
-        fileUrl: string;
-        fileKey: string;
-    }[]>([])
+    const [images, setImages] = useState<string[]>()
 
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {

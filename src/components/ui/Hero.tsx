@@ -1,4 +1,4 @@
-
+import { FC } from 'react'
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { BiArrowBack } from "react-icons/bi";
@@ -7,7 +7,15 @@ import SliderTwo from "../../../public/slide-2.png";
 import SliderThree from "../../../public/slide-3.png";
 import Image from "next/image";
 
-const Hero = () => {
+const SliderImages = [SliderOne, SliderTwo, SliderThree]
+
+
+
+interface HeroProps {
+
+}
+
+const Hero: FC<HeroProps> = ({ }) => {
     return (
         <Carousel
             autoPlay={true}
@@ -33,26 +41,18 @@ const Hero = () => {
                 </div>
             )}
         >
-            <div>
-                <Image src={SliderOne} className="relative" alt="shoes image" />
-                <p className="text-black absolute bottom-20 left-0 bg-white dark:bg-dark w-[200px] p-5 font-bold uppercase text-2xl cursor-pointer md:w-[120px] md:text-sm md:p-2 md:bottom-5">
-                    Shop Now
-                </p>
-            </div>
-            <div>
-                <Image src={SliderTwo} className="relative" alt="shoes image" />
-                <p className="text-black absolute bottom-20 left-0 bg-white dark:bg-dark w-[200px] p-5 font-bold uppercase text-2xl cursor-pointer md:w-[120px] md:text-sm md:p-2 md:bottom-5">
-                    Shop Now
-                </p>
-            </div>
-            <div>
-                <Image src={SliderThree} className="relative" alt="shoes image" />
-                <p className="text-black absolute bottom-20 left-0 bg-white dark:bg-dark w-[200px] p-5 font-bold uppercase text-2xl cursor-pointer md:w-[120px] md:text-sm md:p-2 md:bottom-5">
-                    Shop Now
-                </p>
-            </div>
-        </Carousel>
-    );
-};
+            {SliderImages.map((img, index) => (
+                <div key={index}>
+                    <Image src={img} className="relative" alt="shoes image" />
+                    <p className="text-black absolute bottom-20 left-0 bg-white dark:bg-dark w-[200px] p-5 font-bold uppercase text-2xl cursor-pointer md:w-[120px] md:text-sm md:p-2 md:bottom-5">
+                        Shop Now
+                    </p>
+                </div>
+            ))}
 
-export default Hero;
+        </Carousel>
+    )
+}
+
+export default Hero
+

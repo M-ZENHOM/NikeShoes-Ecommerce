@@ -7,10 +7,13 @@ import { getProduct } from "../api/products/[id]";
 import SEO from "~/components/SEO";
 
 
+import { FC } from 'react'
 
-const ProductPage = ({ data }: { data: ProductType }) => {
+interface ProductPageProps {
+    data: ProductType
+}
 
-
+const ProductPage: FC<ProductPageProps> = ({ data }) => {
     return (
         <div className="py-[100px] flex flex-col max-w-[1360px] w-full mx-auto ">
             <SEO title={data.title} desc={data.description} />
@@ -22,6 +25,9 @@ const ProductPage = ({ data }: { data: ProductType }) => {
         </div>
     )
 }
+
+export default ProductPage
+
 
 export const getServerSideProps: GetServerSideProps<{
     data: Data
@@ -56,4 +62,3 @@ export const getServerSideProps: GetServerSideProps<{
 }
 
 
-export default ProductPage

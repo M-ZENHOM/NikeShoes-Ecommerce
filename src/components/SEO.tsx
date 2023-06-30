@@ -1,7 +1,14 @@
+import { FC } from 'react'
 import Head from 'next/head'
 import React from 'react'
 
-const SEO = ({ title, desc }: { title: string, desc: string }) => {
+
+interface SEOProps {
+    title: string
+    desc: string
+}
+
+const SEO: FC<SEOProps> = ({ title, desc }) => {
     return (
         <Head>
             <title>{"Nike Store - " + title}</title>
@@ -12,3 +19,4 @@ const SEO = ({ title, desc }: { title: string, desc: string }) => {
 }
 
 export default SEO
+

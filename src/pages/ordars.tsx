@@ -1,7 +1,8 @@
+import { NextPage } from 'next'
 import React from 'react'
 
 
-const OrdarsPage = () => {
+const OrdarsPage: NextPage = () => {
 
     return (
         <div className='h-[65vh] flex justify-center items-center flex-col text-5xl space-y-5'>

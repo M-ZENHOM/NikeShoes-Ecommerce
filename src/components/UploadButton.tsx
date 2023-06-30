@@ -1,10 +1,17 @@
+import { Dispatch, FC, SetStateAction } from 'react'
 import "@uploadthing/react/styles.css";
 import { UploadButton } from "@uploadthing/react";
 import { OurFileRouter } from "~/server/uploadthing";
 
 
-export default function UploadButtonPage({ setThumbnail, setUploadError, setImages }: { setThumbnail: string | any, setUploadError: string | any, setImages: [] | any }) {
 
+interface UploadButtonProps {
+    setThumbnail: Dispatch<SetStateAction<string | undefined>>
+    setUploadError: Dispatch<SetStateAction<string | undefined>>
+    setImages: Dispatch<SetStateAction<string[] | undefined>>
+}
+
+const UploadBtn: FC<UploadButtonProps> = ({ setThumbnail, setUploadError, setImages }) => {
     return (
         <main className="flex  w-full max-w-xl">
             <UploadButton<OurFileRouter>
@@ -22,5 +29,7 @@ export default function UploadButtonPage({ setThumbnail, setUploadError, setImag
             />
 
         </main>
-    );
+    )
 }
+
+export default UploadBtn

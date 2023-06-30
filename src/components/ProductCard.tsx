@@ -1,9 +1,13 @@
+import { FC } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
 import type { ProductType } from '~/Types'
 
-const ProductCard = ({ shoe }: { shoe: ProductType }) => {
+interface ProductCardProps {
+    shoe: ProductType
+}
+
+const ProductCard: FC<ProductCardProps> = ({ shoe }) => {
     return (
         <div className="card w-96 h-96 bg-base-100 shadow-xl md:w-80">
             <div className="card-body">

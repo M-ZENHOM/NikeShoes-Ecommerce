@@ -1,4 +1,4 @@
-
+import { FC } from 'react'
 import SEO from "~/components/SEO";
 import ProductCard from "~/components/ProductCard";
 import Hero from "~/components/ui/Hero";
@@ -11,9 +11,12 @@ import type { ProductType } from "~/Types";
 
 
 
-const Home = ({ data }: { data: ProductType }) => {
-  const { filtered, handleChange, setCategoryQuery, AllData } = SearchFilteration({ data: data });
+interface indexProps {
+  data: ProductType
+}
 
+const Home: FC<indexProps> = ({ data }) => {
+  const { filtered, handleChange, setCategoryQuery, AllData } = SearchFilteration({ data: data });
   return (
     <>
       <SEO title="Home Page" desc="new desc" />
@@ -33,8 +36,12 @@ const Home = ({ data }: { data: ProductType }) => {
         ))}
       </div>
     </>
-  );
-};
+  )
+}
+
+export default Home
+
+
 
 export const getStaticProps: GetStaticProps = async () => {
   const data = await getProducts();
@@ -45,4 +52,4 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: 60,
   };
 };
-export default Home;
+

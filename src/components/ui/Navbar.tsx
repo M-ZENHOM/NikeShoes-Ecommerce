@@ -1,14 +1,18 @@
+import { FC } from 'react'
 import { signIn, signOut, useSession } from "next-auth/react";
 import { SiNike } from 'react-icons/si'
 import Image from "next/image";
 import Link from "next/link"
-import MaxWidthWrapper from "../MaxWidthWrapper";
 import { useAppSelector } from "~/store/hooks";
 import type { ProductType } from "~/Types";
+import MaxWidthWrapper from "../MaxWidthWrapper";
 
 
+interface NavbarProps {
 
-const Navbar = () => {
+}
+
+const Navbar: FC<NavbarProps> = ({ }) => {
     const cart = useAppSelector((state) => state.cart);
     const totalPrice = cart.reduce((acc: number, product: ProductType) => {
         acc += product.price * product.quantity;
@@ -18,12 +22,9 @@ const Navbar = () => {
 
 
     const { data: session } = useSession();
-
-
-
     return (
         <div className="navbar bg-base-100 sticky top-0 z-50">
-            <MaxWidthWrapper>
+            <MaxWidthWrapper >
                 <div className="flex-1">
                     <Link href="/" className="btn btn-ghost normal-case text-5xl"><SiNike /></Link>
                 </div>
@@ -64,15 +65,11 @@ const Navbar = () => {
                                 <li><button onClick={() => signOut()}>Logout</button></li>
                             </ul>
                         </div>)}
-
-
                 </div>
             </MaxWidthWrapper>
         </div>
     )
 }
-
-
 
 export default Navbar
 

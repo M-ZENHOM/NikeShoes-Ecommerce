@@ -1,5 +1,7 @@
 import axios from 'axios';
 import confetti from 'canvas-confetti';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const formatCurrency = (amount = 0, currency = 'USD') =>
     new Intl.NumberFormat('en-US', {
@@ -43,4 +45,19 @@ export const shootFireworks = () => {
             })
         );
     }, 250);
+};
+
+
+export const notifyMsg = (msg: string) => {
+    toast.success(msg, {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+
+    });
 };

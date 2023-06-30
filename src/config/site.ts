@@ -14,7 +14,4 @@ export const siteConfig = {
             services: ["Terms of use", "Privacy policy", "Cookie policy"]
         }
     ]
-
-
-
 }

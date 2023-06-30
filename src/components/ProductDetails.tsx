@@ -1,29 +1,19 @@
 
+import { FC } from 'react'
 import { IoMdHeartEmpty } from "react-icons/io";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 import type { ProductType } from "~/Types";
 import { useAppDispatch } from "~/store/hooks";
 import { ADD_TO_CART } from "~/store/slices/cart";
+import { notifyMsg } from "~/lib/utils";
 
+interface ProductDetailsProps {
+    data: ProductType
+}
 
-
-
-const ProductDetails = ({ data }: { data: ProductType }) => {
+const ProductDetails: FC<ProductDetailsProps> = ({ data }) => {
     const dispatch = useAppDispatch()
-    const notify = (msg: string) => {
-        toast.success(msg, {
-            position: "bottom-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
 
-        });
-    };
     return (
         <div className="space-y-3 max-w-[600px] w-full md:text-center mx-auto md:mt-10 md:px-10">
             <h2 className="font-bold text-2xl">{data.title}</h2>
@@ -43,7 +33,7 @@ const ProductDetails = ({ data }: { data: ProductType }) => {
             </div>
             <button
                 onClick={() =>
-                    dispatch(ADD_TO_CART(data)) && notify("Added, Go check your cart now!")
+                    dispatch(ADD_TO_CART(data)) && notifyMsg("Added, Go check your cart now!")
                 }
                 className="w-full py-4 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75"
             >
@@ -58,7 +48,9 @@ const ProductDetails = ({ data }: { data: ProductType }) => {
             </button>
             <ToastContainer />
         </div>
-    );
-};
+    )
+}
 
-export default ProductDetails;
+export default ProductDetails
+
+
