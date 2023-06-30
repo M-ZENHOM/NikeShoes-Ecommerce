@@ -15,7 +15,7 @@ const Navbar: FC = () => {
         acc += product.price * product.quantity;
         return acc;
     }, 0);
-    const handleSignIn = async () => {
+    const handleSignIn = async (): Promise<void> => {
         try {
             await signIn();
         } catch (error) {
@@ -23,7 +23,7 @@ const Navbar: FC = () => {
             console.error(error);
         }
     };
-    const handleSignOut = async () => {
+    const handleSignOut = async (): Promise<void> => {
         try {
             await signOut();
         } catch (error) {
