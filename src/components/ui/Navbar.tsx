@@ -15,23 +15,19 @@ const Navbar: FC = () => {
         acc += product.price * product.quantity;
         return acc;
     }, 0);
-    const handleSignIn = async (): Promise<void> => {
-        try {
-            await signIn();
-        } catch (error) {
+    const handleSignIn = (): void => {
+        signIn().catch((error) => {
             // Handle sign-in error
             console.error(error);
-        }
-    };
-    const handleSignOut = async (): Promise<void> => {
-        try {
-            await signOut();
-        } catch (error) {
-            // Handle sign-in error
-            console.error(error);
-        }
+        });
     };
 
+    const handleSignOut = (): void => {
+        signOut().catch((error) => {
+            // Handle sign-out error
+            console.error(error);
+        });
+    };
     const { data: session } = useSession();
     return (
         <div className="navbar bg-base-100 sticky top-0 z-50">
