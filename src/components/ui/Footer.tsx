@@ -16,7 +16,7 @@ const Footer: FC = () => {
                             <a key={i} className="link link-hover">{s}</a>
                         ))}
                     </div>
-                ))}``
+                ))}
                 <div>
                     <span className="footer-title">Newsletter</span>
                     <div className="form-control w-80">

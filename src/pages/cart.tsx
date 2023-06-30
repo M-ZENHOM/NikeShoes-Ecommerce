@@ -1,3 +1,4 @@
+import { StripeError, StripeErrorType } from "@stripe/stripe-js";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import type { ProductType } from "~/Types";
@@ -22,11 +23,12 @@ const CartPage = () => {
             email: session?.user.email
         })
 
-        const result: any = await stripe?.redirectToCheckout({
+
+        const result = await stripe?.redirectToCheckout({
             sessionId: checkoutSession.data.id
         })
-        if (result.error) {
-            console.log(result.error.message);
+        if (result?.error) {
+            console.log(result?.error);
         }
 
     }
