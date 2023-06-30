@@ -2,7 +2,7 @@
 
 
 export type Data = {
-    map(arg0: (shoes: ProductType) => import("react").JSX.Element): unknown
+    map(arg0: (shoes: ProductType) => React.JSX.Element): unknown
     _id: string
     id: number
     title: string
@@ -14,7 +14,7 @@ export type Data = {
     images: []
 }
 export interface ProductType {
-    map(arg0: (shoes: ProductType) => import("react").JSX.Element): unknown
+    map(arg0: (shoes: ProductType) => React.JSX.Element): unknown
     _id: string
     id: number
     title: string
