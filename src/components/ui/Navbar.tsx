@@ -1,4 +1,4 @@
-
+import type { FC } from 'react'
 import { signIn, signOut, useSession } from "next-auth/react";
 import { SiNike } from 'react-icons/si'
 import Image from "next/image";
@@ -9,14 +9,28 @@ import MaxWidthWrapper from "../MaxWidthWrapper";
 
 
 
-const Navbar = () => {
+const Navbar: FC = () => {
     const cart = useAppSelector((state) => state.cart);
     const totalPrice = cart.reduce((acc: number, product: ProductType) => {
         acc += product.price * product.quantity;
         return acc;
     }, 0);
-
-
+    const handleSignIn = async () => {
+        try {
+            await signIn();
+        } catch (error) {
+            // Handle sign-in error
+            console.error(error);
+        }
+    };
+    const handleSignOut = async () => {
+        try {
+            await signOut();
+        } catch (error) {
+            // Handle sign-in error
+            console.error(error);
+        }
+    };
 
     const { data: session } = useSession();
     return (
@@ -45,7 +59,7 @@ const Navbar = () => {
                         </div>
                     </div>
 
-                    {!session ? <button onClick={() => signIn()} className="btn  btn-primary">Login</button>
+                    {!session ? <button onClick={handleSignIn} className="btn  btn-primary">Login</button>
                         : (<div className="dropdown dropdown-end">
                             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">
@@ -58,7 +72,7 @@ const Navbar = () => {
                                 </li>
                                 <li><Link href="/dashboard">Dashboard</Link></li>
                                 <li><Link href="/ordars">Ordars</Link></li>
-                                <li><button onClick={() => signOut()}>Logout</button></li>
+                                <li><button onClick={handleSignOut}>Logout</button></li>
                             </ul>
                         </div>)}
                 </div>
