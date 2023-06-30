@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import type { FC } from 'react'
 import { siteConfig } from "~/config/site"
 import MaxWidthWrapper from "../MaxWidthWrapper"
 

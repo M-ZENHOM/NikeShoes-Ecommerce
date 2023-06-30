@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import type { FC } from 'react'
 import Image from "next/image";
 import { BsTrash3 } from "react-icons/bs";
 import type { ProductType } from "~/Types";

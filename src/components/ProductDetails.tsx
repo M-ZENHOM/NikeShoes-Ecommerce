@@ -1,5 +1,5 @@
 
-import { FC } from 'react'
+import type { FC } from 'react'
 import { IoMdHeartEmpty } from "react-icons/io";
 import { ToastContainer } from "react-toastify";
 import type { ProductType } from "~/Types";

@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import type { FC } from 'react'
 import { signIn, signOut, useSession } from "next-auth/react";
 import { SiNike } from 'react-icons/si'
 import Image from "next/image";

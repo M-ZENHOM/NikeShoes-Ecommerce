@@ -1,13 +1,11 @@
-import { FC } from 'react'
+import type { FC } from 'react'
 import { SiArgos, SiArkecosystem, SiApostrophe, SiAral, SiAsciidoctor, SiAtandt, SiBigbasket, SiCoil, SiFfmpeg } from 'react-icons/si'
 import Icon from './Icon';
 import Marquee from 'react-fast-marquee';
 
-interface MarqueeSwiperProps {
 
-}
 
-const MarqueeSwiper: FC<MarqueeSwiperProps> = ({ }) => {
+const MarqueeSwiper: FC = () => {
     return (
         <Marquee pauseOnHover={true} speed={70} className='bg-base-300 rounded-xl bg-opacity-30 my-10'>
             <Icon Icon={<SiArgos />} Name="" Color="text-black" />

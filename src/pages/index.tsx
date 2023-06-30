@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import type { FC } from 'react'
 import SEO from "~/components/SEO";
 import ProductCard from "~/components/ProductCard";
 import Hero from "~/components/ui/Hero";
