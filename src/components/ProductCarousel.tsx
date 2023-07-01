@@ -18,26 +18,22 @@ const ProductCarousel: FC<ProductCarouselProps> = ({ data }) => {
                 showIndicators={false}
                 showStatus={false}
                 thumbWidth={60}
-
                 renderThumbs={() =>
                     data.images?.map((img, idx) => (
-                        <div key={idx} >
-                            <Image
-                                src={img}
-                                width={500}
-                                height={600}
-                                alt="logo"
-                                priority
-                            />
-                        </div>
+                        <Image
+                            key={idx}
+                            src={img}
+                            width={500}
+                            height={600}
+                            alt="Thumbs imgs"
+                            priority
+                        />
                     ))
                 }
                 className="productCarousel"
             >
                 {data.images?.map((img: string, idx: number) => (
-                    <div key={idx} >
-                        <Image width={500} height={500} src={img} alt="shoes image" priority />
-                    </div>
+                    <Image key={idx} width={500} height={500} src={img} alt="shoes image" priority />
                 ))}
             </Carousel>
         </div>
