@@ -27,8 +27,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 process.env.STRIPE_WEBHOOK_SECRET as string
             );
         } catch (err) {
-            console.log(`❌ Error message: ${err}`);
-            res.status(400).send(`Webhook Error: ${err}`);
+            console.log(`❌ Error message: ${err as string} `);
+            res.status(400).send(`Webhook Error: ${err as string}`);
             return;
         }
 
@@ -39,7 +39,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         if (event.type === 'checkout.session.completed') {
             console.log(`💰  Payment received!`);
         } else {
-            console.warn(`🤷‍♀️ Unhandled event type: ${event.type}`);
+            console.warn(`🤷‍♀️ Unhandled event type: ${event.type as string}`);
         }
 
         // 3. Return a response to acknowledge receipt of the event.

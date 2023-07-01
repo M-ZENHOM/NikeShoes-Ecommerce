@@ -30,6 +30,7 @@ const config = {
     ],
     "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
     "@next/next/no-html-link-for-pages": "off",
+    "@typescript-eslint/no-misused-promises": "off",
     "react/no-unescaped-entities": 0,
     "react/jsx-key": "off",
   },
