@@ -57,29 +57,9 @@ const Dashborad: NextPage = () => {
                 setAddError('Complete empty inputs first.');
             }
         } catch (error) {
-            // Handle the error appropriately (e.g., display an error message)
             console.log('An error occurred:', error);
         }
     };
-    // const addProduct = async (e: React.FormEvent): Promise<void> => {
-    //     e.preventDefault()
-    //     if (title !== "" && description !== "" && category !== "" && price !== 0 && thumbnail !== "" && id !== 0) {
-    //         setAddError('')
-    //         await axios.post('/api/products', {
-    //             id,
-    //             title,
-    //             description,
-    //             category,
-    //             price,
-    //             thumbnail,
-    //             images
-    //         })
-    //         router.push('/')
-    //     } else {
-    //         setAddError("Complete empty inputs frist.")
-    //     }
-    // }
-
     if (status === "unauthenticated") {
         router.push('/auth/signin')
     }

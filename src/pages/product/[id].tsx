@@ -10,6 +10,7 @@ import { ParsedUrlQuery } from 'querystring';
 
 
 
+
 interface ProductPageProps {
     data: ProductType
 }
@@ -22,7 +23,6 @@ const ProductPage: FC<ProductPageProps> = ({ data }) => {
                 <ProductCarousel data={data} />
                 <ProductDetails data={data} />
             </div>
-            {/* <RelatedProduct /> */}
         </div>
     )
 }

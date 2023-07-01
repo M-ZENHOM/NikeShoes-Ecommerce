@@ -15,17 +15,6 @@ const Navbar: FC = () => {
         acc += product.price * product.quantity;
         return acc;
     }, 0);
-    const handleSignIn = (): void => {
-        signIn().catch((error) => {
-            console.error(error);
-        });
-    };
-
-    const handleSignOut = (): void => {
-        signOut().catch((error) => {
-            console.error(error);
-        });
-    };
     const { data: session } = useSession();
     return (
         <div className="navbar bg-base-100 sticky top-0 z-50">
@@ -54,7 +43,7 @@ const Navbar: FC = () => {
                         </div>
                     </div>
 
-                    {!session ? <button onClick={handleSignIn} className="btn  btn-primary">Login</button>
+                    {!session ? <button onClick={() => signIn()} className="btn  btn-primary">Login</button>
                         : (<div className="dropdown dropdown-end">
                             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">
@@ -67,7 +56,7 @@ const Navbar: FC = () => {
                                 </li>
                                 <li><Link href="/dashboard">Dashboard</Link></li>
                                 <li><Link href="/ordars">Ordars</Link></li>
-                                <li><button onClick={handleSignOut}>Logout</button></li>
+                                <li><button onClick={() => signOut()}>Logout</button></li>
                             </ul>
                         </div>)}
                 </div>
