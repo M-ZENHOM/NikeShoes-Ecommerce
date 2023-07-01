@@ -11,7 +11,7 @@ const ResultPage: NextPage = () => {
         query: { session_id },
     } = useRouter();
 
-    const { data, error }: { data: void | undefined, error: void | undefined } = useSWR(
+    const { data, error } = useSWR(
         () => `/api/checkout-session/${session_id as string}`,
         fetcher
     );
