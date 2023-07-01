@@ -1,25 +1,25 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import confetti from 'canvas-confetti';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 
 
-export const isClient = typeof window === 'object';
+export const fetcher = async <T>(url: string): Promise<T> => {
+    const res: AxiosResponse<T> = await axios.get(url);
+    return res.data;
+};
 
-export const fetcher = (url: string): Promise<void> =>
-    axios.get(url).then((res) => res.data);
-
-export const shootFireworks = () => {
+export const shootFireworks = (): void => {
     const duration = 15 * 1000;
     const animationEnd = Date.now() + duration;
     const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
-    function randomInRange(min: number, max: number) {
+    function randomInRange(min: number, max: number): number {
         return Math.random() * (max - min) + min;
     }
 
-    const interval = setInterval(async (): Promise<void> => {
+    const interval = setInterval(() => {
         const timeLeft = animationEnd - Date.now();
 
         if (timeLeft <= 0) {
@@ -27,13 +27,13 @@ export const shootFireworks = () => {
         }
 
         const particleCount = 50 * (timeLeft / duration);
-        await confetti(
+        confetti(
             Object.assign({}, defaults, {
                 particleCount,
                 origin: { x: randomInRange(0.2, 0.4), y: Math.random() - 0.2 },
             })
         );
-        await confetti(
+        confetti(
             Object.assign({}, defaults, {
                 particleCount,
                 origin: { x: randomInRange(0.6, 0.8), y: Math.random() - 0.2 },
@@ -44,7 +44,7 @@ export const shootFireworks = () => {
 
 
 
-export const notifyMsg = (msg: string) => {
+export const notifyMsg = (msg: string): void => {
     toast.success(msg, {
         position: "bottom-right",
         autoClose: 5000,

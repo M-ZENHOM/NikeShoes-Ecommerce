@@ -18,8 +18,8 @@ const Dashborad: NextPage = () => {
     const router = useRouter();
     const date = new Date();
     const [addError, setAddError] = useState<string>('');
-    const [uploadError, setUploadError] = useState<string>();
-    const [thumbnail, setThumbnail] = useState<string>()
+    const [uploadError, setUploadError] = useState<string | undefined>();
+    const [thumbnail, setThumbnail] = useState<string | undefined>()
     const [product, setProduct] = useState<Product>({
         id: date.getMilliseconds(),
         title: "",
@@ -28,7 +28,7 @@ const Dashborad: NextPage = () => {
         category: "",
     })
     const { title, id, description, price, category } = product
-    const [images, setImages] = useState<string[]>()
+    const [images, setImages] = useState<string[] | undefined>()
 
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -38,25 +38,47 @@ const Dashborad: NextPage = () => {
             [name]: value,
         });
     };
-
     const addProduct = async (e: React.FormEvent): Promise<void> => {
-        e.preventDefault()
-        if (title !== "" && description !== "" && category !== "" && price !== 0 && thumbnail !== "" && id !== 0) {
-            setAddError('')
-            await axios.post('/api/products', {
-                id,
-                title,
-                description,
-                category,
-                price,
-                thumbnail,
-                images
-            })
-            router.push('/')
-        } else {
-            setAddError("Complete empty inputs frist.")
+        try {
+            e.preventDefault();
+            if (title !== '' && description !== '' && category !== '' && price !== 0 && thumbnail !== '' && id !== 0) {
+                setAddError('');
+                await axios.post('/api/products', {
+                    id,
+                    title,
+                    description,
+                    category,
+                    price,
+                    thumbnail,
+                    images,
+                });
+                router.push('/');
+            } else {
+                setAddError('Complete empty inputs first.');
+            }
+        } catch (error) {
+            // Handle the error appropriately (e.g., display an error message)
+            console.log('An error occurred:', error);
         }
-    }
+    };
+    // const addProduct = async (e: React.FormEvent): Promise<void> => {
+    //     e.preventDefault()
+    //     if (title !== "" && description !== "" && category !== "" && price !== 0 && thumbnail !== "" && id !== 0) {
+    //         setAddError('')
+    //         await axios.post('/api/products', {
+    //             id,
+    //             title,
+    //             description,
+    //             category,
+    //             price,
+    //             thumbnail,
+    //             images
+    //         })
+    //         router.push('/')
+    //     } else {
+    //         setAddError("Complete empty inputs frist.")
+    //     }
+    // }
 
     if (status === "unauthenticated") {
         router.push('/auth/signin')

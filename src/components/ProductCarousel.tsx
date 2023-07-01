@@ -3,7 +3,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 import type { ProductType } from "~/Types";
 import Image from 'next/image';
-;
+
 
 interface ProductCarouselProps {
     data: ProductType

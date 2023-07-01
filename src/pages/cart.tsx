@@ -20,7 +20,7 @@ const CartPage = () => {
 
     const createCheckoutSession = async (): Promise<void> => {
         const stripe = await getStripe();
-        const checkoutSession = await axios.post('/api/checkout-session', {
+        const checkoutSession = await axios.post<{ id: string }>('/api/checkout-session', {
             items: cart,
             email: session?.user.email
         })
@@ -30,7 +30,7 @@ const CartPage = () => {
             sessionId: checkoutSession.data.id
         })
         if (result?.error) {
-            console.log(result?.error);
+            console.log(result.error);
         }
 
     }
