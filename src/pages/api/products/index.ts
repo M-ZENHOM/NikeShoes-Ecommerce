@@ -37,9 +37,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         res.status(200).json({ data })
 
     } else if (req.method === "POST") {
-        const { title, id, images, category, price, thumbnail, description }: ProductType = req.body
+        const { title, id, images, category, price, thumbnail, description, quantity }: ProductType = req.body
 
-        if (title && id && images && price && category && description && thumbnail) {
+        if (title && id && images && price && category && description && thumbnail && quantity) {
             const product = {
                 id,
                 title,
@@ -48,6 +48,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 description,
                 thumbnail,
                 images,
+                quantity
             }
             const insertedId = await addProduct(product)
             res.status(200).json(insertedId)

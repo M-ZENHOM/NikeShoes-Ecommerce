@@ -8,6 +8,7 @@ import UploadBtn from '~/components/UploadButton'
 
 export type Product = {
     id: number,
+    quantity: number,
     title: string,
     description: string,
     price: number,
@@ -26,8 +27,9 @@ const Dashborad: NextPage = () => {
         description: "",
         price: 0,
         category: "",
+        quantity: 1
     })
-    const { title, id, description, price, category } = product
+    const { title, id, description, price, category, quantity } = product
     const [images, setImages] = useState<string[] | undefined>()
 
 
@@ -51,6 +53,7 @@ const Dashborad: NextPage = () => {
                     price,
                     thumbnail,
                     images,
+                    quantity
                 });
                 router.push('/');
             } else {
