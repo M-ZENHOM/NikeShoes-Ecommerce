@@ -32,7 +32,7 @@ const Navbar: FC = () => {
             <MaxWidthWrapper >
                 <div className="flex-1 items-center flex space-x-10">
                     <Link href="/" className="btn btn-ghost normal-case text-5xl"><SiNike /></Link>
-                    <Link href="/allProducts" className="btn btn-primary rounded-md p-3 ">Shoes</Link>
+
                 </div>
                 <div className="flex items-center">
                     <div className="dropdown dropdown-end">
