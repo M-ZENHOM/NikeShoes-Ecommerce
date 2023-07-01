@@ -4,12 +4,14 @@ import type { GetServerSidePropsContext, InferGetServerSidePropsType } from "nex
 import { getProviders, signIn } from "next-auth/react"
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "~/server/auth";
+import SEO from '~/components/SEO';
 
 
 
 export default function SignIn({ providers }: InferGetServerSidePropsType<typeof getServerSideProps>) {
     return (
         <>
+            <SEO title="SignIn" desc="Auth signin page" />
             {Object.values(providers).map((provider) => (
                 <div key={provider.name} className='h-[70vh] flex flex-col items-center justify-center border my-6'>
                     <SiNike className='text-8xl' />

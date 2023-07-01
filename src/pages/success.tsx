@@ -5,6 +5,7 @@ import useSWR from 'swr';
 import { fetcher, shootFireworks } from '~/lib/utils';
 import { FaCheck } from 'react-icons/fa'
 import Link from 'next/link';
+import SEO from '~/components/SEO';
 
 const ResultPage: NextPage = () => {
     const {
@@ -24,6 +25,7 @@ const ResultPage: NextPage = () => {
     }, [data]);
     return (
         <div className="container xl:max-w-screen-xl mx-auto py-12 px-6 text-center h-[65vh] flex justify-center items-center">
+            <SEO title="Success" desc="Redirect page for succes paymeny!" />
             {error ? (
                 <div className="p-2 rounded-md bg-rose-100 text-rose-500 max-w-md mx-auto">
                     <p className="text-lg">Sorry, something went wrong!</p>

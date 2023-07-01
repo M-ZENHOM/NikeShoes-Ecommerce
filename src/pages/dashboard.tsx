@@ -3,6 +3,7 @@ import type { NextPage } from 'next'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import SEO from '~/components/SEO'
 import UploadBtn from '~/components/UploadButton'
 
 
@@ -69,6 +70,7 @@ const Dashborad: NextPage = () => {
     if (session) {
         return (
             <div className='my-5'>
+                <SEO title="Dashboard" desc="Here u can see all ur payment history" />
                 <h2 className="text-4xl font-bold">Dashboard</h2>
                 <form className='w-full mx-auto flex flex-col  border p-24 md:p-8 space-y-5 my-10'>
                     <h2 className="text-2xl font-bold">Add new product:</h2>

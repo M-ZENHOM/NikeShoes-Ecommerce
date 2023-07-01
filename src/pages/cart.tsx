@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import type { ProductType } from "~/Types";
 import CartItems from "~/components/CartItems";
 import EmptyCart from "~/components/EmptyCart";
+import SEO from "~/components/SEO";
 import { useAppDispatch, useAppSelector } from "~/store/hooks";
 import { CLEAR_CART } from "~/store/slices/cart";
 import { getStripe } from "~/utils/getStripe";
@@ -37,6 +38,7 @@ const CartPage = () => {
 
     return (
         <>
+            <SEO title="Cart" desc="See all ur cart products" />
             {cart.length !== 0 ? (
                 <div className="flex flex-col items-center justify-center">
                     <h2 className="font-bold text-3xl my-28">Shopping Cart</h2>

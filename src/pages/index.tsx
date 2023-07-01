@@ -21,7 +21,7 @@ const Home: FC<indexProps> = ({ data }) => {
 
   return (
     <>
-      <SEO title="Home Page" desc="new desc" />
+      <SEO title="Home" desc="Nike store for shoes developed with nextjs, typescript, tailwind, mongodb" />
       <Hero />
       <MarqueeSwiper />
       <div className="flex justify-center items-center space-x-5 flex-wrap my-20 md:space-y-5 ">
