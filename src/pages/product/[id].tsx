@@ -1,13 +1,14 @@
 
+import type { FC } from 'react'
 import ProductDetails from "~/components/ProductDetails";
 import ProductCarousel from "~/components/ProductCarousel";
 import type { GetServerSideProps } from 'next'
-import { Data, ProductType } from "~/Types";
+import type { Data, ProductType } from "~/Types";
 import { getProduct } from "../api/products/[id]";
 import SEO from "~/components/SEO";
+import { ParsedUrlQuery } from 'querystring';
 
 
-import { FC } from 'react'
 
 interface ProductPageProps {
     data: ProductType
@@ -28,13 +29,15 @@ const ProductPage: FC<ProductPageProps> = ({ data }) => {
 
 export default ProductPage
 
-
+interface IParams extends ParsedUrlQuery {
+    id: string
+}
 export const getServerSideProps: GetServerSideProps<{
     data: Data
-}> = async (context: any) => {
-    const { params } = context;
+}> = async (context) => {
+    const { id } = context.params as IParams;
     try {
-        const data = await getProduct(params.id);
+        const data = await getProduct(id);
         if (!data) {
             return {
                 notFound: true,

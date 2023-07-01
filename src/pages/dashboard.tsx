@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { NextPage } from 'next'
+import type { NextPage } from 'next'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -39,7 +39,7 @@ const Dashborad: NextPage = () => {
         });
     };
 
-    const addProduct = async (e: React.FormEvent) => {
+    const addProduct = async (e: React.FormEvent): Promise<void> => {
         e.preventDefault()
         if (title !== "" && description !== "" && category !== "" && price !== 0 && thumbnail !== "" && id !== 0) {
             setAddError('')

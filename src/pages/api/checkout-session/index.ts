@@ -1,15 +1,14 @@
-
-import { NextApiRequest, NextApiResponse } from 'next'
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-
+import type { NextApiRequest, NextApiResponse } from 'next'
+import Stripe from 'stripe';
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY as string);
 import type { ProductType } from '~/Types'
 
 
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
-        const { items, email } = req.body
-        const transformedItems = items.map((item: ProductType) => ({
+        const { items, email }: { items: ProductType[], email: string } = req.body
+        const transformedItems = items.map((item) => ({
             quantity: item.quantity,
             price_data: {
                 currency: 'usd',
@@ -23,7 +22,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         }))
         try {
 
-            const session = await stripe.checkout.sessions.create({
+            const session: Stripe.Checkout.Session = await stripe.checkout.sessions.create({
                 payment_method_types: ['card'],
                 shipping_address_collection: {
                     allowed_countries: ["EG", "US"]
@@ -50,3 +49,4 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         res.status(405).end('Method Not Allowed')
     }
 }
+export default handler;

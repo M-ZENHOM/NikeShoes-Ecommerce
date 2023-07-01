@@ -17,14 +17,12 @@ const Navbar: FC = () => {
     }, 0);
     const handleSignIn = (): void => {
         signIn().catch((error) => {
-            // Handle sign-in error
             console.error(error);
         });
     };
 
     const handleSignOut = (): void => {
         signOut().catch((error) => {
-            // Handle sign-out error
             console.error(error);
         });
     };
@@ -32,8 +30,9 @@ const Navbar: FC = () => {
     return (
         <div className="navbar bg-base-100 sticky top-0 z-50">
             <MaxWidthWrapper >
-                <div className="flex-1">
+                <div className="flex-1 items-center flex space-x-10">
                     <Link href="/" className="btn btn-ghost normal-case text-5xl"><SiNike /></Link>
+                    <Link href="/allProducts" className="btn btn-primary rounded-md p-3 ">Shoes</Link>
                 </div>
                 <div className="flex items-center">
                     <div className="dropdown dropdown-end">

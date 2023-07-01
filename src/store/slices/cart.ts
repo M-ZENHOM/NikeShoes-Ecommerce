@@ -1,38 +1,44 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { type PayloadAction, createSlice } from '@reduxjs/toolkit'
 import type { RootState } from '../index'
 import type { ProductType } from '~/Types';
 
 
+const initialState: Array<ProductType> = []
+
 export const cartSlice = createSlice({
     name: 'cart',
-    initialState: [],
+    initialState,
     reducers: {
-        ADD_TO_CART: (state, action) => {
-            const item: any = state.find((el: ProductType) => el.id === action.payload.id);
-            if (item) {
-                item.quantity++;
+        ADD_TO_CART: (state, action: PayloadAction<ProductType>) => {
+            const newItem = action.payload;
+            const existingItem = state.find(item => item.id === newItem.id);
+
+            if (existingItem) {
+                existingItem.quantity += newItem.quantity;
             } else {
-                //@ts-ignore -- idk whats is this err [ to back again]
-                state.push({ ...action.payload, quantity: 1 });
+                state.push(newItem);
             }
         },
-        DELETE_FROM_CART: (state, action) => {
-            return state.filter((el: ProductType) => el.id !== action.payload.id)
+        DELETE_FROM_CART: (state, action: PayloadAction<number>) => {
+            const idToRemove = action.payload;
+            return state = state.filter(item => item.id !== idToRemove);
         },
-        IncreaseQuantity: (state, action) => {
-            const item: any = state.find((el: ProductType) => el.id === action.payload.id);
-            item.quantity === 5 ? (item.quantity = 4) : (item.quantity += 1);
+        UPDATE_QUANTITY: (state, action: PayloadAction<{ id: number; quantity: number }>) => {
+            const { id, quantity } = action.payload;
+            const itemToUpdate = state.find(item => item.id === id);
+            if (itemToUpdate) {
+                itemToUpdate.quantity = quantity;
+            }
         },
-        DecreaseQuantity: (state, action) => {
-            const item: any = state.find((el: ProductType) => el.id === action.payload.id);
-            item.quantity === 0 ? (item.quantity = 1) : (item.quantity -= 1);
-        }
+        CLEAR_CART: state => {
+            return state = [];
+        },
+
     },
 })
 
-export const { ADD_TO_CART, DELETE_FROM_CART, IncreaseQuantity, DecreaseQuantity } = cartSlice.actions
+export const { ADD_TO_CART, DELETE_FROM_CART, UPDATE_QUANTITY, CLEAR_CART } = cartSlice.actions
 
-// Other code such as selectors can use the imported `RootState` type
 export const selectCart = (state: RootState) => state
 
 export default cartSlice.reducer

@@ -7,8 +7,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 export const isClient = typeof window === 'object';
 
-export const fetcher = (url: string): Promise<any> =>
-    axios.get(url).then((res) => res.data) as Promise<any>;
+export const fetcher = (url: string): Promise<void> =>
+    axios.get(url).then((res) => res.data);
 
 export const shootFireworks = () => {
     const duration = 15 * 1000;
@@ -19,7 +19,7 @@ export const shootFireworks = () => {
         return Math.random() * (max - min) + min;
     }
 
-    const interval: ReturnType<typeof setInterval> = setInterval(async () => {
+    const interval = setInterval(async (): Promise<void> => {
         const timeLeft = animationEnd - Date.now();
 
         if (timeLeft <= 0) {

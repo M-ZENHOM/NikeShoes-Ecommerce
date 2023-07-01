@@ -18,8 +18,9 @@ const ProductDetails: FC<ProductDetailsProps> = ({ data }) => {
         <div className="space-y-3 max-w-[600px] w-full md:text-center mx-auto md:mt-10 md:px-10">
             <h2 className="font-bold text-2xl">{data.title}</h2>
             <h4 className="text-xl">{data.category}</h4>
-            <div>
+            <div className='space-y-2'>
                 <span className="font-bold">Price:{data.price}$</span>
+                <div className="font-bold">Quantity: {data.quantity}</div>
                 <h6 className="text-[#979490]">incl. of taxes </h6>
                 <h6 className="text-[#979490]">
                     (Also includes all applicable duties)

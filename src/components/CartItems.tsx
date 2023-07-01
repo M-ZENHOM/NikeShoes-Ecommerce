@@ -1,9 +1,9 @@
-import type { FC } from 'react'
+import { type FC } from 'react'
 import Image from "next/image";
 import { BsTrash3 } from "react-icons/bs";
 import type { ProductType } from "~/Types";
 import { useAppDispatch } from "~/store/hooks";
-import { DELETE_FROM_CART, DecreaseQuantity, IncreaseQuantity } from "~/store/slices/cart";
+import { DELETE_FROM_CART, UPDATE_QUANTITY } from "~/store/slices/cart";
 
 
 interface CartItemsProps {
@@ -42,39 +42,31 @@ const CartItems: FC<CartItemsProps> = ({ data }) => {
                                     <option value="UK-11.5">UK-11.5</option>
                                 </select>
                             </div>
+
                             <div className="flex items-center">
-                                <div className="font-bold ">Quantity:</div>
-                                <div className="flex justify-center items-center space-x-3 ml-2 bg-black text-white p-1 px-2 rounded-md">
-                                    <span
-                                        onClick={() =>
-                                            dispatch(IncreaseQuantity({ id: shoes.id }))
-                                        }
-                                        className="text-center cursor-pointer  w-[25px] text-xl hover:bg-[#6d6d6d] hover:rounded-full transition-all duration-500"
-                                    >
-                                        +
-                                    </span>
-                                    <p>{shoes.quantity}</p>
-                                    <div
-                                        onClick={() =>
-                                            dispatch(DecreaseQuantity({ id: shoes.id }))
-                                        }
-                                        className="text-center cursor-pointer  w-[25px] text-xl hover:bg-[#6d6d6d] hover:rounded-full transition-all duration-500"
-                                    >
-                                        -
-                                    </div>
-                                </div>
+                                <div className="font-bold">Quantity:</div>
+                                <select onChange={(e) => dispatch(UPDATE_QUANTITY({ id: shoes.id, quantity: parseInt(e.target.value) }))}>
+                                    {
+                                        [1, 2, 3, 4, 5].map((q, i) => (
+
+                                            <option className='text-black' key={i} value={q}>{q}</option>
+
+                                        ))
+                                    }
+
+                                </select>
                             </div>
                         </div>
                     </div>
                     <div className="flex flex-col md:flex-row md:h-full w-full md:mt-5  justify-between h-[90px] items-end text-[#6d6d6d]">
                         <h2 className="font-bold">Price : {shoes.price}$</h2>
                         <BsTrash3
-                            onClick={() => dispatch(DELETE_FROM_CART({ id: shoes.id }))}
+                            onClick={() => dispatch(DELETE_FROM_CART(shoes.id))}
                             className="text-xl cursor-pointer hover:text-black"
                         />
                     </div>
                 </div>
-            </div>
+            </div >
         ))}
     </>
 }

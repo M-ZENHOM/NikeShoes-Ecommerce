@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === "development") {
         globalWithMongoClientPromise._mongoClientPromise = client.connect();
     }
 
-    clientPromise = globalWithMongoClientPromise._mongoClientPromise!;
+    clientPromise = globalWithMongoClientPromise._mongoClientPromise;
 } else {
     const client = new MongoClient(uri);
     clientPromise = client.connect();

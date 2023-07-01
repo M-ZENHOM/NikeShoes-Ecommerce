@@ -1,7 +1,7 @@
 import type { Dispatch, FC, SetStateAction } from 'react'
 import "@uploadthing/react/styles.css";
 import { UploadButton } from "@uploadthing/react";
-import { OurFileRouter } from "~/server/uploadthing";
+import type { OurFileRouter } from "~/server/uploadthing";
 
 
 

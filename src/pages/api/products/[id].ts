@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from "next";
 import type { ProductType } from "~/Types";
 import clientPromise from "~/lib/MongoDb";
 

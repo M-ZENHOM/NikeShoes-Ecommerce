@@ -6,7 +6,7 @@ import type { ProductType } from "~/Types";
 import ProductCard from "./ProductCard";
 import { getProducts } from "~/pages/api/products";
 
-import { FC } from 'react'
+import type { FC } from 'react'
 
 interface RelatedProductProps {
     data: ProductType

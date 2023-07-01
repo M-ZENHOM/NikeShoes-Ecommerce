@@ -1,11 +1,12 @@
-import { ObjectId } from 'mongodb';
-import { NextApiRequest, NextApiResponse } from 'next';
+import type { ObjectId } from 'mongodb';
+import type { NextApiRequest, NextApiResponse } from 'next';
+import type { ProductType } from '~/Types';
 import clientPromise from '~/lib/MongoDb';
 import type { Product } from '~/pages/dashboard';
 
 
 
-export const getProducts = async (): Promise<Product[]> => {
+export const getProducts = async (): Promise<ProductType[]> => {
     const mongoClient = await clientPromise;
 
     const data = (await mongoClient
@@ -29,28 +30,24 @@ export const addProduct = async (product: Product): Promise<ObjectId> => {
 
     return res.insertedId
 };
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === "GET") {
         const data = await getProducts()
         res.status(200).json({ data })
 
     } else if (req.method === "POST") {
+        const { title, id, images, category, price, thumbnail, description }: ProductType = req.body
 
-        if (req.body.title &&
-            req.body.id &&
-            req.body.images &&
-            req.body.price &&
-            req.body.category &&
-            req.body.description &&
-            req.body.thumbnail) {
+        if (title && id && images && price && category && description && thumbnail) {
             const product = {
-                id: req.body.id,
-                title: req.body.title,
-                price: req.body.price,
-                category: req.body.category,
-                description: req.body.description,
-                thumbnail: req.body.thumbnail,
-                images: req.body.images,
+                id,
+                title,
+                price,
+                category,
+                description,
+                thumbnail,
+                images,
             }
             const insertedId = await addProduct(product)
             res.status(200).json(insertedId)

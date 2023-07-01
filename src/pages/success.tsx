@@ -1,4 +1,4 @@
-import { NextPage } from 'next';
+import type { NextPage } from 'next';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
@@ -11,8 +11,8 @@ const ResultPage: NextPage = () => {
         query: { session_id },
     } = useRouter();
 
-    const { data, error } = useSWR(
-        () => `/api/checkout-session/${session_id}`,
+    const { data, error }: { data: void | undefined, error: void | undefined } = useSWR(
+        () => `/api/checkout-session/${session_id as string}`,
         fetcher
     );
     console.log(data);
