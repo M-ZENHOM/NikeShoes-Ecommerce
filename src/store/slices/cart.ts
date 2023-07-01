@@ -15,6 +15,7 @@ export const cartSlice = createSlice({
 
             if (existingItem) {
                 existingItem.quantity += newItem.quantity;
+                existingItem.size += newItem.size;
             } else {
                 state.push(newItem);
             }
@@ -30,6 +31,13 @@ export const cartSlice = createSlice({
                 itemToUpdate.quantity = quantity;
             }
         },
+        UPDATE_SIZE: (state, action: PayloadAction<{ id: number; size: string }>) => {
+            const { id, size } = action.payload;
+            const sizeToUpdate = state.find(item => item.id === id);
+            if (sizeToUpdate) {
+                sizeToUpdate.size = size;
+            }
+        },
         CLEAR_CART: state => {
             return state = [];
         },
@@ -37,7 +45,7 @@ export const cartSlice = createSlice({
     },
 })
 
-export const { ADD_TO_CART, DELETE_FROM_CART, UPDATE_QUANTITY, CLEAR_CART } = cartSlice.actions
+export const { ADD_TO_CART, DELETE_FROM_CART, UPDATE_QUANTITY, CLEAR_CART, UPDATE_SIZE } = cartSlice.actions
 
 export const selectCart = (state: RootState) => state
 

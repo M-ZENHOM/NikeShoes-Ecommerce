@@ -12,6 +12,9 @@ export type Data = {
     thumbnail: string
     category: string
     images: []
+    size: string
+    sizes: []
+
 }
 export interface ProductType {
     filter(arg0: (el: ProductType) => boolean): unknown
@@ -25,6 +28,8 @@ export interface ProductType {
     thumbnail: string
     category: string
     images: []
+    size: string
+    sizes: []
 }
 export interface PostProduct {
     id: number
@@ -34,4 +39,6 @@ export interface PostProduct {
     thumbnail: string
     category: string
     images: []
+    size: string
+    sizes: []
 }

@@ -30,7 +30,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
                 line_items: transformedItems,
                 mode: 'payment',
                 success_url: `${req.headers.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-                cancel_url: `${req.headers.origin}?status=cancelled`,
+                cancel_url: `${req.headers.origin}/cancelled`,
                 metadata: {
                     email,
                     images: JSON.stringify(items.map((item: ProductType) => item.thumbnail))

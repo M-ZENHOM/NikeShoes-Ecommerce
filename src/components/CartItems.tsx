@@ -3,7 +3,7 @@ import Image from "next/image";
 import { BsTrash3 } from "react-icons/bs";
 import type { ProductType } from "~/Types";
 import { useAppDispatch } from "~/store/hooks";
-import { DELETE_FROM_CART, UPDATE_QUANTITY } from "~/store/slices/cart";
+import { DELETE_FROM_CART, UPDATE_QUANTITY, UPDATE_SIZE } from "~/store/slices/cart";
 
 
 interface CartItemsProps {
@@ -34,26 +34,22 @@ const CartItems: FC<CartItemsProps> = ({ data }) => {
                             </h2>
                             <span className="text-[#6d6d6d]">{shoes.category}</span>
                         </div>
-                        <div className="flex space-x-8 mt-5 text-[#6d6d6d]">
+                        <div className="flex space-x-16 mt-5 text-[#6d6d6d]">
                             <div className="flex items-center">
-                                <div className="font-bold">Sizes:</div>
-                                <select>
-                                    <option value="UK-10.5">UK-10.5</option>
-                                    <option value="UK-11.5">UK-11.5</option>
+                                <div className="font-bold mr-2">Sizes:</div>
+                                <select className='select select-primary w-fit rounded-md' onChange={(e) => dispatch(UPDATE_SIZE({ id: shoes.id, size: (e.target.value) }))}>
+                                    {shoes.sizes.map((s, i) => (
+                                        <option className='text-black' key={i} value={s}>{s}</option>
+                                    ))}
                                 </select>
                             </div>
 
                             <div className="flex items-center">
-                                <div className="font-bold">Quantity:</div>
-                                <select onChange={(e) => dispatch(UPDATE_QUANTITY({ id: shoes.id, quantity: parseInt(e.target.value) }))}>
-                                    {
-                                        [1, 2, 3, 4, 5].map((q, i) => (
-
-                                            <option className='text-black' key={i} value={q}>{q}</option>
-
-                                        ))
-                                    }
-
+                                <div className="font-bold mr-2">Quantity:</div>
+                                <select className='select select-primary w-fit rounded-md' onChange={(e) => dispatch(UPDATE_QUANTITY({ id: shoes.id, quantity: parseInt(e.target.value) }))}>
+                                    {[1, 2, 3, 4, 5].map((q, i) => (
+                                        <option className='text-black' key={i} value={q}>{q}</option>
+                                    ))}
                                 </select>
                             </div>
                         </div>

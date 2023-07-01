@@ -4,6 +4,7 @@ import type { ProductType } from "~/Types";
 
 const FilterData = ({ data }: { data: ProductType[] }) => {
 
+
     const [query, setQuery] = useState<string>('');
     const [categoryQuery, setCategoryQuery] = useState<string>('');
 
@@ -22,6 +23,7 @@ const FilterData = ({ data }: { data: ProductType[] }) => {
         )
     }
 
+
     const searchFilterByCategory = (array: ProductType[] | []) => {
         return array.filter(
             (el: ProductType) => el.category.includes(categoryQuery)
@@ -32,7 +34,6 @@ const FilterData = ({ data }: { data: ProductType[] }) => {
         setQuery('')
         setCategoryQuery('')
     }
-
     const filtered = query ? searchFilter(data) : categoryQuery ? searchFilterByCategory(data) : data;
 
     return {
@@ -44,7 +45,8 @@ const FilterData = ({ data }: { data: ProductType[] }) => {
         AllData,
         query,
         categoryQuery,
-        filtered
+        filtered,
+
     }
 }
 

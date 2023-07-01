@@ -4,7 +4,7 @@ import ProductCard from "~/components/ProductCard";
 import Hero from "~/components/ui/Hero";
 import MarqueeSwiper from "~/components/MarqueeSwiper";
 import { getProducts } from "./api/products";
-import type { GetStaticProps } from 'next';
+import type { GetServerSideProps } from 'next';
 import React from "react";
 import type { ProductType } from "~/Types";
 import FilterData from '~/utils/FilterData';
@@ -17,6 +17,7 @@ interface indexProps {
 
 const Home: FC<indexProps> = ({ data }) => {
   const { filtered, handleChange, setCategoryQuery, AllData } = FilterData({ data: data });
+
 
   return (
     <>
@@ -48,13 +49,13 @@ export default Home
 
 
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const data = await getProducts();
   return {
     props: {
       data,
+      revalidate: 60,
     },
-    revalidate: 60,
   };
 };
 

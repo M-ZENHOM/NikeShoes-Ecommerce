@@ -15,3 +15,26 @@ export const sortOptions = [
         value: "name-desc",
     },
 ]
+export const sizeFilter = [
+    {
+        label: "UK-10.5",
+        value: "UK-10.5"
+    },
+    {
+        label: "UK-11.5",
+        value: "UK-11.5",
+    },
+    {
+        label: "UK-12",
+        value: "UK-12"
+    },
+    {
+        label: "UK-12.5",
+        value: "UK-12.5"
+    },
+    {
+        label: "UK-13",
+        value: "UK-13",
+    },
+
+]
