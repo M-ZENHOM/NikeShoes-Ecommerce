@@ -1,6 +1,7 @@
 import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { type AppType } from "next/app";
+import { Analytics } from '@vercel/analytics/react';
 import MaxWidthWrapper from "~/components/MaxWidthWrapper";
 import Footer from "~/components/ui/Footer";
 import Navbar from "~/components/ui/Navbar";
@@ -17,6 +18,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <Navbar />
         <MaxWidthWrapper>
           <Component {...pageProps} />
+          <Analytics />
         </MaxWidthWrapper>
         <Footer />
       </StoreProvider>
