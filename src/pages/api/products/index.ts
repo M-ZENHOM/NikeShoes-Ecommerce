@@ -2,10 +2,16 @@ import type { ObjectId } from 'mongodb';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import type { ProductType } from '~/Types';
 import clientPromise from '~/lib/MongoDb';
-import type { Product } from '~/pages/dashboard';
 
 
-
+type Product = {
+    id: number,
+    quantity: number,
+    title: string,
+    description: string,
+    price: number,
+    category: string,
+}
 export const getProducts = async (): Promise<ProductType[]> => {
     const mongoClient = await clientPromise;
 
