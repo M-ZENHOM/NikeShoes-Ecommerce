@@ -48,7 +48,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         try {
             const { id, title, images, category, price, size, thumbnail, description, quantity, sizes, userId } = req.body
-            await ProductSchema.validate({ id, title, images, category, price, size, thumbnail, description, quantity, sizes }, { abortEarly: false });
+            await ProductSchema.validate({ id, title, images, category, price, size, thumbnail, description, quantity, sizes, userId }, { abortEarly: false });
             const product = {
                 title,
                 price,

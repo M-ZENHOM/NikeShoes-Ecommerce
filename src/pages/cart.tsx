@@ -23,7 +23,8 @@ const CartPage = () => {
         const stripe = await getStripe();
         const checkoutSession = await axios.post('/api/checkout-session', {
             items: cart,
-            email: session?.user.email
+            email: session?.user.email,
+            userId: session?.user.id
         })
 
 

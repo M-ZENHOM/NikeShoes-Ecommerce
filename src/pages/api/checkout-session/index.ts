@@ -7,7 +7,7 @@ import type { ProductType } from '~/Types'
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
-        const { items, email }: { items: ProductType[], email: string } = req.body
+        const { items, email, userId }: { items: ProductType[], email: string, userId: string } = req.body
         const transformedItems = items.map((item) => ({
             quantity: item.quantity,
             price_data: {
@@ -33,6 +33,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
                 cancel_url: `${req.headers.origin}/cancelled`,
                 metadata: {
                     email,
+                    userId,
                     images: JSON.stringify(items.map((item: ProductType) => item.thumbnail))
                 },
             })

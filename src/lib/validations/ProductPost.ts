@@ -24,4 +24,16 @@ export const ProductSchema = yup.object().shape({
     size: yup
         .string()
         .required("Required"),
+    images: yup
+        .array()
+        .required("Required"),
+    sizes: yup
+        .array()
+        .required("Required"),
+    thumbnail: yup
+        .string()
+        .required("Required"),
+    userId: yup
+        .string()
+        .required("Required"),
 });
