@@ -13,7 +13,7 @@ export type Data = {
     category: string
     images: []
     size: string
-    sizes: []
+    sizes: string[]
 
 }
 export interface ProductType {
@@ -29,7 +29,8 @@ export interface ProductType {
     category: string
     images: []
     size: string
-    sizes: []
+    sizes: string[]
+    userId: string
 }
 export interface PostProduct {
     id: number
@@ -40,5 +41,11 @@ export interface PostProduct {
     category: string
     images: []
     size: string
-    sizes: []
+    sizes: string[]
+}
+export type User = {
+    id: string
+    email: string
+    name: string
+    image: string
 }

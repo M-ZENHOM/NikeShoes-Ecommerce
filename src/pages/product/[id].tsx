@@ -41,13 +41,13 @@ export const getServerSideProps: GetServerSideProps<{
         if (!data) {
             return {
                 notFound: true,
-                revalidate: 60,
+                revalidate: 0,
             };
         }
         return {
             props: {
                 data: JSON.parse(JSON.stringify(data)),
-                revalidate: 60,
+                revalidate: 0,
             },
         };
 

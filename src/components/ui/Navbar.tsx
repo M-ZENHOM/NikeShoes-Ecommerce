@@ -1,11 +1,11 @@
 import type { FC } from 'react'
-import { signIn, signOut, useSession } from "next-auth/react";
 import { SiNike } from 'react-icons/si'
-import Image from "next/image";
 import Link from "next/link"
 import { useAppSelector } from "~/store/hooks";
-import type { ProductType } from "~/Types";
+import type { ProductType, User } from "~/Types";
 import MaxWidthWrapper from "../MaxWidthWrapper";
+import React from 'react';
+import UserData from '~/utils/UserData';
 
 
 
@@ -15,7 +15,7 @@ const Navbar: FC = () => {
         acc += product.price * product.quantity;
         return acc;
     }, 0);
-    const { data: session } = useSession();
+
     return (
         <div className="navbar bg-base-100 sticky top-0 z-50">
             <MaxWidthWrapper >
@@ -42,23 +42,7 @@ const Navbar: FC = () => {
                             </div>
                         </div>
                     </div>
-
-                    {!session ? <button onClick={() => signIn()} className="btn  btn-primary">Login</button>
-                        : (<div className="dropdown dropdown-end">
-                            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                                <div className="w-10 rounded-full">
-                                    <Image src={session?.user.image} width={500} height={500} priority alt={session?.user.name} />
-                                </div>
-                            </label>
-                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                                <li>
-                                    <h2>{session?.user.name}</h2>
-                                </li>
-                                <li><Link href="/dashboard">Dashboard</Link></li>
-                                <li><Link href="/ordars">Ordars</Link></li>
-                                <li><button onClick={() => signOut()}>Logout</button></li>
-                            </ul>
-                        </div>)}
+                    <UserData />
                 </div>
             </MaxWidthWrapper>
         </div>

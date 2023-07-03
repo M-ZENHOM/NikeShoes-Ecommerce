@@ -2,15 +2,17 @@ import type { ObjectId } from 'mongodb';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import type { ProductType } from '~/Types';
 import clientPromise from '~/lib/MongoDb';
+import { ProductSchema } from '~/lib/validations/ProductPost';
 
 
 type Product = {
-    id: number,
-    quantity: number,
     title: string,
+    quantity: number,
     description: string,
     price: number,
     category: string,
+    size: string
+
 }
 export const getProducts = async (): Promise<ProductType[]> => {
     const mongoClient = await clientPromise;
@@ -43,28 +45,29 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         res.status(200).json({ data })
 
     } else if (req.method === "POST") {
-        const { title, id, images, category, price, thumbnail, description, quantity }: ProductType = req.body
 
-        if (title && id && images && price && category && description && thumbnail && quantity) {
+        try {
+            const { id, title, images, category, price, size, thumbnail, description, quantity, sizes, userId } = req.body
+            await ProductSchema.validate({ id, title, images, category, price, size, thumbnail, description, quantity, sizes }, { abortEarly: false });
             const product = {
-                id,
                 title,
                 price,
                 category,
                 description,
                 thumbnail,
                 images,
-                quantity
+                quantity,
+                size,
+                id,
+                sizes,
+                userId,
             }
             const insertedId = await addProduct(product)
             res.status(200).json(insertedId)
-        } else {
-            res.status(400).json({ error: "Product data are requird!" })
+        } catch (error) {
+            res.status(400).json({ error: "Product data are requird or validation error!" })
         }
 
     }
-
-
-
 }
 

@@ -2,16 +2,28 @@ import type { FC } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { ProductType } from '~/Types'
+import { useSession } from 'next-auth/react'
+import { FaTrashAlt, FaRegEdit } from 'react-icons/fa'
 
 interface ProductCardProps {
     shoe: ProductType
 }
 
 const ProductCard: FC<ProductCardProps> = ({ shoe }) => {
+    const { data: session } = useSession();
     return (
         <div className="card w-96 h-96 bg-base-100 shadow-xl md:w-80">
+
             <div className="card-body">
-                <h2 className="card-title">{shoe.title}</h2>
+                <div className='flex justify-between'>
+                    <h2 className="card-title">{shoe.title}</h2>
+                    {session && session?.user.id === shoe.userId ? (
+                        <div className='flex justify-between items-center text-xl w-full max-w-[50px] mr-2 '>
+                            <button className='text-red-500 hover:scale-110'><FaTrashAlt /></button>
+                            <button className='text-black hover:scale-110'><FaRegEdit /></button>
+                        </div>
+                    ) : null}
+                </div>
                 <p className='flex items-center justify-between'>
                     {shoe.price}$
                     <Link href={`product/${shoe._id}`} className="btn badge badge-primary">Buy Now</Link>

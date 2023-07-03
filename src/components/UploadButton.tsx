@@ -4,7 +4,6 @@ import { UploadButton } from "@uploadthing/react";
 import type { OurFileRouter } from "~/server/uploadthing";
 
 
-
 interface UploadButtonProps {
     setThumbnail: Dispatch<SetStateAction<string | undefined>>
     setUploadError: Dispatch<SetStateAction<string | undefined>>
