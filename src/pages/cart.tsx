@@ -1,6 +1,7 @@
 import type { StripeError } from "@stripe/stripe-js";
 import axios from "axios";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 import type { ProductType } from "~/Types";
 import CartItems from "~/components/CartItems";
 import EmptyCart from "~/components/EmptyCart";
@@ -47,9 +48,12 @@ const CartPage = () => {
                         <div className="flex flex-col  mb-28">
                             <h4 className="font-bold text-2xl mb-5">Cart Items</h4>
                             <CartItems data={cart} />
-                            {cart.length >= 2 && (
-                                <button className="bg-red-600 w-full max-w-[150px] text-white p-2 my-8 rounded-full hover:bg-black/80" onClick={() => dispatch(CLEAR_CART())}>Empty ur cart</button>
-                            )}
+                            <div className="flex justify-between items-center">
+                                {cart.length >= 2 && (
+                                    <button className="bg-red-600 w-full max-w-[150px] text-white p-2 my-8 rounded-full hover:bg-black/80" onClick={() => dispatch(CLEAR_CART())}>Empty ur cart</button>
+                                )}
+                                <Link href='/products' className="bg-red-600 w-full max-w-[170px] text-white p-2 my-8 rounded-full hover:bg-black/80 text-center" >Continue shopping</Link>
+                            </div>
                         </div>
                         <div className="flex flex-col w-[400px] space-y-5 lg:w-auto h-full lg:pb-10 mx-auto  ">
                             <h4 className="font-bold text-2xl mb-5">Summary</h4>

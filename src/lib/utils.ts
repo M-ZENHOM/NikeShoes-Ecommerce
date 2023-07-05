@@ -55,6 +55,5 @@ export const notifyMsg = (msg: string): void => {
         draggable: true,
         progress: undefined,
         theme: "light",
-
     });
 };

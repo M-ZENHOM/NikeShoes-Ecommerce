@@ -13,6 +13,7 @@ export default {
       },
       gridTemplateColumns: {
         fluid: "repeat(auto-fill,minmax(350px,1fr))",
+        fluidTwo: "repeat(auto-fill,minmax(300px,1fr))",
       },
     },
   },

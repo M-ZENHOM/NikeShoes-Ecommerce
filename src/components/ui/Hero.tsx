@@ -20,7 +20,7 @@ const Hero: FC = () => {
             infiniteLoop={true}
             showStatus={false}
             showIndicators={false}
-            className="relative text-black dark:text-white max-w-[1360px] mx-auto"
+            className="relative text-black dark:text-white max-w-[1360px] mx-auto pb-10"
             renderArrowPrev={(clickHandler) => (
                 <div
                     onClick={clickHandler}

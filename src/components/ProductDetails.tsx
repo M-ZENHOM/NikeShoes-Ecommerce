@@ -6,6 +6,8 @@ import type { ProductType } from "~/Types";
 import { useAppDispatch } from "~/store/hooks";
 import { ADD_TO_CART } from "~/store/slices/cart";
 import { notifyMsg } from "~/lib/utils";
+import { IoCartOutline } from 'react-icons/io5';
+import Link from 'next/link';
 
 interface ProductDetailsProps {
     data: ProductType
@@ -40,13 +42,13 @@ const ProductDetails: FC<ProductDetailsProps> = ({ data }) => {
             >
                 Add To cart
             </button>
-            <button
+            <Link href="/products"
 
                 className="w-full py-4 rounded-full border border-black text-lg font-medium transition-transform active:scale-95 flex items-center justify-center gap-2 hover:opacity-75 mb-10"
             >
-                Whishlist
-                <IoMdHeartEmpty size={20} />
-            </button>
+                Continue Shopping
+                <IoCartOutline size={20} />
+            </Link>
             <ToastContainer />
         </div>
     )

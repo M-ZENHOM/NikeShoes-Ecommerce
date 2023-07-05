@@ -1,9 +1,4 @@
 export const sortOptions = [
-    { label: "Date: Old to new", value: "createdAt-asc" },
-    {
-        label: "Date: New to old",
-        value: "createdAt-desc",
-    },
     { label: "Price: Low to high", value: "price-asc" },
     { label: "Price: High to low", value: "price-desc" },
     {
@@ -15,6 +10,7 @@ export const sortOptions = [
         value: "name-desc",
     },
 ]
+export const sizes = ["UK-10.5", "UK-11.5", "UK-12", "UK-12.5", "UK-13"]
 export const sizeFilter = [
     {
         label: "UK-10.5",

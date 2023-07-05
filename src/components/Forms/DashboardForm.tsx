@@ -1,12 +1,16 @@
+
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import React, { useId, type FC } from 'react'
+import React, { type FC } from 'react'
 import UploadBtn from '../UploadButton';
 import { CustomInput } from '../CustomInput';
 import { Formik, Form } from "formik";
 import { ProductSchema } from '~/lib/validations/ProductPost';
 import { CustomSelect, CustomSelectSize } from '../CustomSelect';
 import { useSession } from 'next-auth/react';
+import { sizes } from '~/config/products';
+
+
 
 type formData = {
     title: string
@@ -22,32 +26,34 @@ const DashboardForm: FC = () => {
     const [uploadError, setUploadError] = React.useState<string | undefined>();
     const [thumbnail, setThumbnail] = React.useState<string | undefined>()
     const [images, setImages] = React.useState<string[] | undefined>()
-    const id = useId();
-    const [sizes, setSizes] = React.useState<string[]>(["UK-10.5", "UK-11.5", "UK-12", "UK-12.5", "UK-13"])
+    const id = new Date().getMilliseconds();
     const { data: session } = useSession();
     const userId = session?.user.id;
+
+
     const submitHanlder = (values: formData, actions: any) => {
         const { title, category, description, price, quantity, size } = values
-        startTransition(async () => {
-            await axios.post('/api/products', {
-                title,
-                category,
-                description,
-                price,
-                quantity,
-                thumbnail,
-                images,
-                size,
-                id,
-                sizes,
-                userId
-            });
-            actions.resetForm();
-            router.push('/')
-            // router.refresh()
-        })
+        !thumbnail && !images ?
+            setUploadError("Upload image frist!") :
+            startTransition(async () => {
+                setUploadError('')
+                await axios.post('/api/products', {
+                    title,
+                    category,
+                    description,
+                    price,
+                    quantity,
+                    thumbnail,
+                    images,
+                    size,
+                    id,
+                    sizes,
+                    userId,
+                });
+                actions.resetForm();
+                router.push('/products')
+            })
     }
-
 
 
     return (
@@ -69,7 +75,7 @@ const DashboardForm: FC = () => {
                     <CustomInput label="Description" id="description" name="description" type="text" placeholder="Enter your description" />
                     <CustomSelect label="Category" id="category" name="category" type="text" placeholder="Enter your category" />
                     <CustomSelectSize label="Size" id="size" name="size" type="text" placeholder="Enter your Size" />
-                    <CustomInput label="Quantity" id="quantity" name="quantity" type="number" placeholder="Enter your quantity" />
+                    <CustomInput disabled label="Quantity" id="quantity" name="quantity" type="number" placeholder="Enter your quantity" />
                     <CustomInput label="Price" id="price" name="price" type="number" placeholder="Enter your price" />
                     <div className="w-full max-w-xl ">
                         <label className="label">

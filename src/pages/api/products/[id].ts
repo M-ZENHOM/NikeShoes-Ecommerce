@@ -14,6 +14,18 @@ export const getProduct = async (id: string | ObjectId) => {
     return data
 
 }
+export const userProducts = async (id: string | undefined) => {
+
+    const mongoClient = await clientPromise;
+    const data = await mongoClient
+        .db()
+        .collection('products')
+        .find({ userId: id })
+        .toArray();
+
+    return data
+
+}
 export const editProduct = async (
     id: string | ObjectId,
     product: ProductType

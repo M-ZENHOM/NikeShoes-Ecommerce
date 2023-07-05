@@ -16,13 +16,19 @@ declare module "next-auth" {
       id: string;
       image: string;
       name: string;
-      // ...other properties
-      // role: string;
     } & DefaultSession["user"];
   }
 }
 
 export const authOptions: NextAuthOptions = {
+  adapter: MongoDBAdapter(clientPromise),
+  providers: [
+    GoogleProvider({
+      clientId: env.GOOGLE_CLIENT_ID,
+      clientSecret: env.GOOGLE_CLIENT_SECRET,
+    }),
+
+  ],
   callbacks: {
     session: ({ session, user }) => ({
       ...session,
@@ -32,14 +38,6 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   },
-  adapter: MongoDBAdapter(clientPromise),
-  providers: [
-    GoogleProvider({
-      clientId: env.GOOGLE_CLIENT_ID,
-      clientSecret: env.GOOGLE_CLIENT_SECRET,
-    }),
-
-  ],
   pages: {
     signIn: '/auth/signin',
   }
