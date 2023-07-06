@@ -16,7 +16,7 @@ const ResultPage: NextPage = () => {
         () => `/api/checkout-session/${session_id as string}`,
         fetcher
     );
-    console.log(data);
+    // console.log(data);
 
     useEffect(() => {
         if (data) {

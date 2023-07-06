@@ -31,7 +31,7 @@ const DashboardForm: FC = () => {
     const userId = session?.user.id;
 
 
-    const submitHanlder = (values: formData, actions: any) => {
+    const submitHanlder = (values: formData, actions: { resetForm: () => void; }) => {
         const { title, category, description, price, quantity, size } = values
         !thumbnail && !images ?
             setUploadError("Upload image frist!") :

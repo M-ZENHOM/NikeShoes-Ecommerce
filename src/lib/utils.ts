@@ -2,7 +2,6 @@ import axios, { AxiosResponse } from 'axios';
 import confetti from 'canvas-confetti';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ProductType } from '~/Types';
 
 
 
