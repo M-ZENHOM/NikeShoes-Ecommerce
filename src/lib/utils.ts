@@ -14,7 +14,7 @@ export function formatPrice(price: number, currency: string) {
     return new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: currency,
-    }).format(price)
+    }).format(price).replace(/\.00$/, '')
 }
 
 export function formatOrdarImg(str: string) {
