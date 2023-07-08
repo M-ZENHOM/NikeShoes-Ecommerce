@@ -2,8 +2,6 @@ import Link from 'next/link'
 import type { FC } from 'react'
 import SEO from '~/components/SEO'
 
-
-
 const CancelledPage: FC = () => {
     return (
         <div className="  mx-auto py-12 px-8 text-center h-[65vh] flex justify-center items-center">

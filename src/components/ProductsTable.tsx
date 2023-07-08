@@ -1,6 +1,6 @@
 
-import { FC, useTransition } from 'react'
-import { ProductType } from '~/Types'
+import { type FC, useTransition } from 'react'
+import type { ProductDataArr, ProductType } from '~/Types'
 import { FaTrashAlt, FaRegEdit } from 'react-icons/fa'
 import Image from 'next/image'
 import axios from 'axios'
@@ -9,13 +9,7 @@ import Model from './Model'
 import React from 'react'
 
 
-
-interface ProductsTableProps {
-    data: ProductType[]
-}
-
-
-const ProductsTable: FC<ProductsTableProps> = ({ data }) => {
+const ProductsTable: FC<ProductDataArr> = ({ data }) => {
     const [isPending, startTransition] = useTransition()
     const [open, setOpen] = React.useState<boolean>(false)
     const router = useRouter()

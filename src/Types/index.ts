@@ -1,6 +1,9 @@
-
-
-
+export interface ProductDataArr {
+    data: ProductType[]
+}
+export interface ProductData {
+    data: ProductType
+}
 export type Data = {
     map(arg0: (shoes: ProductType) => React.JSX.Element): unknown
     _id: string
@@ -48,4 +51,22 @@ export type User = {
     email: string
     name: string
     image: string
+}
+
+export type OrdersType = {
+    map(arg0: (d: any, i: any) => import("react").JSX.Element): import("react").ReactNode
+    currency: string,
+    img: string,
+    paymentStatus: string,
+    shippingDetails: {
+        address: {
+            city: string,
+            country: string,
+            line1: string,
+        }
+        name: string,
+        email: string
+    }
+    shippingTime: number,
+    totalPrice: number
 }

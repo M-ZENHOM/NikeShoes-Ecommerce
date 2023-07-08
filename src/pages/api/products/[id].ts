@@ -26,6 +26,18 @@ export const userProducts = async (id: string | undefined) => {
     return data
 
 }
+export const paymentDetails = async (id: string | ObjectId) => {
+    id = typeof id === 'string' ? new ObjectId(id) : id
+    const mongoClient = await clientPromise;
+    const data = await mongoClient
+        .db()
+        .collection('users')
+        .find({ _id: id })
+        .toArray();
+
+    return data
+
+}
 export const editProduct = async (
     id: string | ObjectId,
     product: ProductType

@@ -10,8 +10,26 @@ export const fetcher = async <T>(url: string): Promise<T> => {
     return res.data;
 };
 
+export function formatPrice(price: number, currency: string) {
+    return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: currency,
+    }).format(price)
+}
+
+export function formatOrdarImg(str: string) {
+    return str.replace(/\[|\]/g, "").replace(/"/g, '')
+}
+export function formatMillisecondsToDays(milliseconds: number) {
+    const seconds = Math.floor(milliseconds / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24) + " days";
+    return days;
+}
+
 export const shootFireworks = (): void => {
-    const duration = 15 * 1000;
+    const duration = 15 * 100;
     const animationEnd = Date.now() + duration;
     const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 

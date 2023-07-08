@@ -1,19 +1,16 @@
 
 import type { FC } from 'react'
-import { IoMdHeartEmpty } from "react-icons/io";
 import { ToastContainer } from "react-toastify";
-import type { ProductType } from "~/Types";
+import type { ProductData } from "~/Types";
 import { useAppDispatch } from "~/store/hooks";
 import { ADD_TO_CART } from "~/store/slices/cart";
 import { notifyMsg } from "~/lib/utils";
 import { IoCartOutline } from 'react-icons/io5';
 import Link from 'next/link';
 
-interface ProductDetailsProps {
-    data: ProductType
-}
 
-const ProductDetails: FC<ProductDetailsProps> = ({ data }) => {
+
+const ProductDetails: FC<ProductData> = ({ data }) => {
     const dispatch = useAppDispatch()
 
     return (

@@ -3,7 +3,7 @@ import type { FC } from 'react'
 import ProductDetails from "~/components/ProductDetails";
 import ProductCarousel from "~/components/ProductCarousel";
 import type { GetServerSideProps } from 'next'
-import type { Data, ProductType } from "~/Types";
+import type { Data, ProductData } from "~/Types";
 import { getProduct } from "../api/products/[id]";
 import SEO from "~/components/SEO";
 import { ParsedUrlQuery } from 'querystring';
@@ -11,11 +11,8 @@ import { ParsedUrlQuery } from 'querystring';
 
 
 
-interface ProductPageProps {
-    data: ProductType
-}
 
-const ProductPage: FC<ProductPageProps> = ({ data }) => {
+const ProductPage: FC<ProductData> = ({ data }) => {
     return (
         <div className="py-[100px] flex flex-col max-w-[1360px] w-full mx-auto ">
             <SEO title={data.title} desc={data.description} />

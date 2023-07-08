@@ -6,16 +6,12 @@ import MarqueeSwiper from "~/components/MarqueeSwiper";
 import { getProducts } from "./api/products";
 import type { GetServerSideProps } from 'next';
 import React from "react";
-import type { ProductType } from "~/Types";
+import type { ProductDataArr, ProductType } from "~/Types";
 import FooterAction from '~/components/FooterAction';
 
 
 
-interface indexProps {
-  data: ProductType[]
-}
-
-const Home: FC<indexProps> = ({ data }) => {
+const Home: FC<ProductDataArr> = ({ data }) => {
   return (
     <>
       <SEO title="Home" desc="Nike store for shoes developed with nextjs, typescript, tailwind, mongodb" />

@@ -1,9 +1,9 @@
 import { useState } from "react";
-import type { ProductType } from "~/Types";
+import type { ProductDataArr, ProductType } from "~/Types";
 import { useDebounce } from "~/hooks/use-debounce";
 
 
-const FilterData = ({ data }: { data: ProductType[] }) => {
+const FilterData = ({ data }: ProductDataArr) => {
 
 
     const [query, setQuery] = useState<string>('');

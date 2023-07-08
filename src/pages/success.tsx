@@ -8,15 +8,8 @@ import Link from 'next/link';
 import SEO from '~/components/SEO';
 
 const ResultPage: NextPage = () => {
-    const {
-        query: { session_id },
-    } = useRouter();
-
-    const { data, error } = useSWR(
-        () => `/api/checkout-session/${session_id as string}`,
-        fetcher
-    );
-    // console.log(data);
+    const { query: { session_id }, } = useRouter();
+    const { data, error, isLoading } = useSWR(() => `/api/checkout-session/${session_id as string}`, fetcher);
 
     useEffect(() => {
         if (data) {
@@ -30,7 +23,7 @@ const ResultPage: NextPage = () => {
                 <div className="p-2 rounded-md bg-rose-100 text-rose-500 max-w-md mx-auto">
                     <p className="text-lg">Sorry, something went wrong!</p>
                 </div>
-            ) : !data ? (
+            ) : isLoading ? (
                 <div className="p-2 rounded-md bg-gray-100 text-gray-500 max-w-md mx-auto">
                     <p className="text-lg animate-pulse">Loading...</p>
                 </div>
@@ -40,7 +33,7 @@ const ResultPage: NextPage = () => {
                         <FaCheck className="w-12 h-12 flex-shrink-0 text-green-600" />
                         <span>Thanks for your order!</span>
                     </h2>
-                    <p className="text-lg mt-3">Check your <Link className='border-b border-black p-1' href="/ordars">Ordars</Link>  </p>
+                    <p className="text-lg mt-3">Check your <Link className='border-b border-black p-1' href="/dashboard/ordars">Ordars</Link>  </p>
 
                 </div>
             )}

@@ -1,14 +1,10 @@
-import { FC } from 'react'
+import type { FC } from 'react'
 import DashboardForm from '~/components/Forms/DashboardForm'
 import Dashboard from '..'
 import React from 'react'
 import UpdateForm from '~/components/Forms/UpdateForm'
 
-interface indexProps {
-
-}
-
-const ActionPage: FC<indexProps> = ({ }) => {
+const ActionPage: FC = () => {
     const [tab, setTab] = React.useState<boolean>(false)
     return (
         <Dashboard>

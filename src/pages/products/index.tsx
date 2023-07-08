@@ -1,7 +1,7 @@
 import type { GetServerSideProps } from 'next'
 import type { FC } from 'react'
 import React from 'react'
-import type { ProductType } from '~/Types'
+import type { ProductDataArr, ProductType } from '~/Types'
 import { getProducts } from '../api/products'
 import FilterData from '~/utils/FilterData'
 import ProductCardTwo from '~/components/ProductCardTwo'
@@ -9,11 +9,9 @@ import { IoGridOutline, IoMenuOutline } from 'react-icons/io5'
 import { sortOptions } from '~/config/products'
 import SEO from '~/components/SEO'
 
-interface ProductsPageProps {
-    data: ProductType[]
-}
 
-const ProductsPage: FC<ProductsPageProps> = ({ data }) => {
+
+const ProductsPage: FC<ProductDataArr> = ({ data }) => {
     const [grid, setGrid] = React.useState<boolean>(true)
     const { filtered, handleSelect, handleChange, setCategoryQuery, AllData } = FilterData({ data: data });
 
