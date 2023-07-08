@@ -6,6 +6,7 @@ import { useAppDispatch } from "~/store/hooks";
 import { ADD_TO_CART } from "~/store/slices/cart";
 import { notifyMsg } from "~/lib/utils";
 import { IoCartOutline } from 'react-icons/io5';
+import "react-toastify/dist/ReactToastify.css";
 import Link from 'next/link';
 
 

@@ -85,7 +85,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const session = await getServerSession(context.req, context.res, authOptions)
     const userId = session?.user.id as string;
     const fetchedData = await paymentDetails(userId)
-    const data = JSON.parse(JSON.stringify(fetchedData[0]?.orders))
+    const data = JSON.parse(JSON.stringify(!fetchedData[0]?.orders ? null : fetchedData[0]?.orders))
     if (!session) {
         return {
             redirect: {

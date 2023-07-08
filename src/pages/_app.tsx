@@ -7,6 +7,7 @@ import Footer from "~/components/ui/Footer";
 import Navbar from "~/components/ui/Navbar";
 import StoreProvider from "~/store/StoreProvider";
 import "~/styles/globals.css";
+import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 
 const MyApp: AppType<{ session: Session | null }> = ({
