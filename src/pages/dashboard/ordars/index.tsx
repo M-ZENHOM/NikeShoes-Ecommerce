@@ -62,7 +62,7 @@ const OrdarsPage: FC<OrdarProps> = ({ data }) => {
                                         </td>
                                         <td>{formatMillisecondsToDays(d.shippingTime)}
                                         </td>
-                                        <td>{d.paymentStatus}</td>
+                                        <td>{d.paymentStatus === "complete" && "Paid"}</td>
 
                                     </tr>
                                 ))}
