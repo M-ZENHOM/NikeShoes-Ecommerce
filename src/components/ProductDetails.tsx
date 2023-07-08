@@ -1,12 +1,12 @@
 
 import type { FC } from 'react'
+import { ToastContainer } from 'react-toastify';
 import type { ProductData } from "~/Types";
 import { useAppDispatch } from "~/store/hooks";
 import { ADD_TO_CART } from "~/store/slices/cart";
 import { notifyMsg } from "~/lib/utils";
 import { IoCartOutline } from 'react-icons/io5';
 import Link from 'next/link';
-import { ToastContainer } from 'react-toastify';
 
 
 
@@ -45,8 +45,8 @@ const ProductDetails: FC<ProductData> = ({ data }) => {
             >
                 Continue Shopping
                 <IoCartOutline size={20} />
-                <ToastContainer />
             </Link>
+            <ToastContainer />
 
         </div>
     )
