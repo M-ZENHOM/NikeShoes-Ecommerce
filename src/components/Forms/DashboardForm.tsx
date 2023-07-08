@@ -29,8 +29,6 @@ const DashboardForm: FC = () => {
     const id = new Date().getMilliseconds();
     const { data: session } = useSession();
     const userId = session?.user.id;
-
-
     const submitHanlder = (values: formData, actions: { resetForm: () => void; }) => {
         const { title, category, description, price, quantity, size } = values
         !thumbnail && !images ?
@@ -67,16 +65,19 @@ const DashboardForm: FC = () => {
                 size: "UK-10.5"
             }}
             validationSchema={ProductSchema}
-            onSubmit={submitHanlder}
-        >
+            onSubmit={submitHanlder}>
             {(props) => (
                 <Form className='flex flex-col justify-center items-center space-y-5 w-full mx-auto'>
-                    <CustomInput label="Title" id="title" name="title" type="text" placeholder="Enter your title" />
-                    <CustomInput label="Description" id="description" name="description" type="text" placeholder="Enter your description" />
+                    <div className='flex justify-between items-center w-full space-x-5 max-w-xl'>
+                        <CustomInput label="Title" id="title" name="title" type="text" placeholder="Enter your title" />
+                        <CustomInput label="Description" id="description" name="description" type="text" placeholder="Enter your description" />
+                    </div>
                     <CustomSelect label="Category" id="category" name="category" type="text" placeholder="Enter your category" />
                     <CustomSelectSize label="Size" id="size" name="size" type="text" placeholder="Enter your Size" />
-                    <CustomInput disabled label="Quantity" id="quantity" name="quantity" type="number" placeholder="Enter your quantity" />
-                    <CustomInput label="Price" id="price" name="price" type="number" placeholder="Enter your price" />
+                    <div className='flex justify-between items-center w-full space-x-5 max-w-xl'>
+                        <CustomInput disabled label="Quantity" id="quantity" name="quantity" type="number" placeholder="Enter your quantity" />
+                        <CustomInput label="Price" id="price" name="price" type="number" placeholder="Enter your price" />
+                    </div>
                     <div className="w-full max-w-xl ">
                         <label className="label">
                             <span className="label-text">Product Image</span>

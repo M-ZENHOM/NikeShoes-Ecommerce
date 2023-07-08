@@ -27,7 +27,7 @@ export default function User() {
                 <li>
                     <h2>{session?.user.name}</h2>
                 </li>
-                <li><Link href="/dashboard/actions">Dashboard</Link></li>
+                <li><Link href="/dashboard/products">Dashboard</Link></li>
                 <li><button onClick={() => signOut()}>Logout</button></li>
             </ul>
         </div>
