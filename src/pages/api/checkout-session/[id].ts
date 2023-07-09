@@ -17,21 +17,25 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const email = checkout_session?.metadata?.email;
         const userCollection = mongoClient.db().collection("users");
         const sessionUser = await userCollection.findOne({ email });
-        const paymentDetails = {
-            totalPrice: checkout_session?.amount_total,
-            currency: checkout_session?.currency,
-            img: checkout_session?.metadata?.images,
-            shippingDetails: checkout_session?.customer_details,
-            paymentStatus: checkout_session?.status,
-            shippingTime: checkout_session?.expires_at,
-        }
+        const paymentDetails = [
+            {
+                sessionId: checkout_session?.id,
+                totalPrice: checkout_session?.amount_total,
+                currency: checkout_session?.currency,
+                img: checkout_session?.metadata?.images,
+                shippingDetails: checkout_session?.customer_details,
+                paymentStatus: checkout_session?.status,
+                shippingTime: checkout_session?.expires_at,
+            }
+        ]
+
         if (sessionUser) {
             // Insert orders into the user's collection
             await userCollection.updateOne(
                 { email },
-                { $push: { orders: paymentDetails } }
+                { $addToSet: { orders: { $each: paymentDetails } } }
             );
-            // console.log("Orders inserted successfully!");
+            console.log("Orders inserted successfully!");
             res.status(200).json({ message: "Orders inserted successfully" });
         } else {
             console.log("User not found");
