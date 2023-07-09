@@ -2,9 +2,9 @@ import type { FC } from 'react'
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { BiArrowBack } from "react-icons/bi";
-import SliderOne from "../../../public/slide-1.png";
-import SliderTwo from "../../../public/slide-2.png";
-import SliderThree from "../../../public/slide-3.png";
+import SliderOne from "../../../public/slide-1.jpg";
+import SliderTwo from "../../../public/slide-2.jpg";
+import SliderThree from "../../../public/slide-3.jpg";
 import Image from "next/image";
 
 const SliderImages = [SliderOne, SliderTwo, SliderThree]

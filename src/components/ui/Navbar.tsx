@@ -19,9 +19,10 @@ const Navbar: FC = () => {
     return (
         <div className="navbar bg-base-100 sticky top-0 z-50">
             <MaxWidthWrapper >
-                <div className="flex-1 items-center flex space-x-10">
-                    <Link href="/" className="btn btn-ghost normal-case text-5xl"><SiNike /></Link>
-                    <Link href='/products' className='btn btn-ghost text-xl font-bold'>Products</Link>
+                <div className="flex-1 items-center  flex space-x-10 md:space-x-5">
+                    <Link href="/" className="normal-case text-5xl"><SiNike /></Link>
+                    <Link href='/' className='text-xl font-bold'>Home</Link>
+                    <Link href='/products' className=' text-xl font-bold'>Products</Link>
                 </div>
                 <div className="flex items-center">
                     <div className="dropdown dropdown-end">

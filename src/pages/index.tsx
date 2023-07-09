@@ -8,6 +8,12 @@ import type { GetServerSideProps } from 'next';
 import React from "react";
 import type { ProductDataArr, ProductType } from "~/Types";
 import FooterAction from '~/components/FooterAction';
+import "react-multi-carousel/lib/styles.css";
+import Carousel from "react-multi-carousel";
+import { responsiveCarousel } from '~/config/responsive';
+import UpdateBanner from '~/components/UpdateBanner';
+import Image from 'next/image';
+import BannerImg from "../../public/banner.jpg"
 
 
 
@@ -16,15 +22,30 @@ const Home: FC<ProductDataArr> = ({ data }) => {
     <>
       <SEO title="Home" desc="Nike store for shoes developed with nextjs, typescript, tailwind, mongodb" />
       <Hero />
-      <div className='customDivider' />
-      <h2 className='font-bold text-4xl  my-10'>Featured Shoes</h2>
-      <div className="grid grid-cols-fluid gap-28 pb-[100px] place-items-center">
-        {data.slice(0, 6).map((shoe: ProductType) => (
+      <MarqueeSwiper />
+      <div className='flex flex-col justify-center items-center space-y-4 my-5 pt-14 md:text-center'>
+        <h2 className='font-bold text-4xl md:text-2xl '>Explore more of our product</h2>
+        <p className='max-w-[25rem] w-full text-center text-gray-500 md:max-w-[20rem] '>All the collection we need, you can find from us without any hassle</p>
+      </div>
+      <Carousel
+        className='py-8'
+        responsive={responsiveCarousel}
+        containerClass="carousel-container"
+        itemClass="px-[10px]"
+        autoPlaySpeed={1500}
+        autoPlay={true}
+        infinite={true}
+        keyBoardControl={true}
+        customTransition="all .5"
+        transitionDuration={500}
+      >
+        {data.slice(0, 9).map((shoe: ProductType) => (
           <ProductCard key={shoe._id} shoe={shoe} />
         ))}
-      </div>
+      </Carousel>
+      <UpdateBanner />
+      <Image className='w-full' src={BannerImg} alt="BannerImg image" priority />
       <div className='customDivider' />
-      <MarqueeSwiper />
       <FooterAction />
     </>
   )
@@ -39,7 +60,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   return {
     props: {
       data,
-      revalidate: 60,
+      revalidate: 0,
     },
   };
 };

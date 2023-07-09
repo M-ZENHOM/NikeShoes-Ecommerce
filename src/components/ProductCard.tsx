@@ -12,6 +12,11 @@ const ProductCard: FC<ProductCardProps> = ({ shoe }) => {
 
     return (
         <div className="card w-96 h-96 bg-base-300 shadow-xl md:w-80">
+            <figure>
+                <Link href={`product/${shoe._id}`}>
+                    <Image className='hover:scale-110 transition-all duration-500' width={500} height={500} src={shoe.thumbnail} alt={shoe.title} priority />
+                </Link>
+            </figure>
             <div className="card-body">
                 <div className='flex justify-between'>
                     <div className='flex items-center justify-between w-full'>
@@ -21,11 +26,7 @@ const ProductCard: FC<ProductCardProps> = ({ shoe }) => {
                 </div>
                 <p> {shoe.price}$ </p>
             </div>
-            <figure>
-                <Link href={`product/${shoe._id}`}>
-                    <Image className='hover:scale-110 transition-all duration-500' width={500} height={500} src={shoe.thumbnail} alt={shoe.title} priority />
-                </Link>
-            </figure>
+
         </div>
     )
 }
