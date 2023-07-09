@@ -35,7 +35,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 { email },
                 { $addToSet: { orders: { $each: paymentDetails } } }
             );
-            console.log("Orders inserted successfully!");
+            // console.log("Orders inserted successfully!");
             res.status(200).json({ message: "Orders inserted successfully" });
         } else {
             console.log("User not found");
