@@ -67,7 +67,7 @@ const DashboardForm: FC = () => {
             validationSchema={ProductSchema}
             onSubmit={submitHanlder}>
             {(props) => (
-                <Form className='flex flex-col justify-center items-center space-y-5 w-full mx-auto'>
+                <Form className='flex flex-col justify-center items-center space-y-5 w-full mx-auto '>
                     <div className='flex justify-between items-center w-full space-x-5 max-w-xl'>
                         <CustomInput label="Title" id="title" name="title" type="text" placeholder="Enter your title" />
                         <CustomInput label="Description" id="description" name="description" type="text" placeholder="Enter your description" />

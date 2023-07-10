@@ -35,7 +35,7 @@ const Dashboard: FC<DashboardLayoutProps> = ({ children }) => {
                 </div>
             </div>
             <div className="divider divider-horizontal md:divider-vertical" />
-            <div className='grid flex-grow h-screen md:mb-12'>
+            <div className='grid flex-grow h-fit min-h-screen md:mb-12'>
                 {children}
             </div>
         </div>
