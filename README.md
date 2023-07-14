@@ -49,7 +49,7 @@ Create a `.env` file in the root directory and add the environment variables as 
 npm run dev
 ```
 
-### 6. Listen for stripe events
+### 5. Listen for stripe events
 
 ```bash
 pnpm run stripe:listen
