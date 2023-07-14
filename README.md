@@ -2,7 +2,7 @@
 
 This is an open source e-commerce nike shoes build with Next.js. It is bootstrapped with `create-t3-app`.
 
-[![NikeShoesEcommerce](./public/banner.jpg)](https://nike-shoes-ecommerce.vercel.app/)
+[![NikeShoesEcommerce](./public/landing-page-screenshot.png)](https://nike-shoes-ecommerce.vercel.app/)
 
 ## Tech Stack
 
