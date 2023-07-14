@@ -11,7 +11,6 @@ This is an open source e-commerce nike shoes build with Next.js. It is bootstrap
 - [Next Auth](https://next-auth.js.org)
 - [MongoDB](https://www.mongodb.com/)
 - [Reduxjs/toolkit](https://redux-toolkit.js.org/)
-- [Contentlayer](https://www.contentlayer.dev)
 - [uploadthing](https://uploadthing.com)
 - [Stripe](https://stripe.com)
 
