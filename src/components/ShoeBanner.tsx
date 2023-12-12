@@ -1,9 +1,8 @@
 import Image from 'next/image'
-import type { FC } from 'react'
 import UpdateBg from "../../public/UpdateBg.png";
 import Link from 'next/link';
 
-const ShoeBanner: FC = () => {
+const ShoeBanner = () => {
     return <div className='flex items-center  justify-between  md:flex-col py-24'>
         <Image src={UpdateBg} alt="update image" priority />
         <div className='flex flex-col items-start text-lg space-y-5 md:text-center md:items-center'>

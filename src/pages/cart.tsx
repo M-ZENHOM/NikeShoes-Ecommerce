@@ -29,7 +29,7 @@ const CartPage = () => {
             sessionId: checkoutSession.data.id
         })
         if (result?.error) {
-            notifyMsg(result.error.message!, 'error')
+            notifyMsg('error', result.error.message!)
         }
 
     }

@@ -6,7 +6,7 @@ import type { GetServerSideProps } from 'next';
 import React from "react";
 import type { ProductType } from "~/Types";
 import Subscribe from '~/components/Subscribe';
-import ShoeBanner from '~/components/UpdateBanner';
+import ShoeBanner from '~/components/ShoeBanner';
 import Image from 'next/image';
 import BannerImg from "../../public/banner.jpg"
 import ProductCarousel from '~/components/ProductCarousel';
