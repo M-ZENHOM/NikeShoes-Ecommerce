@@ -11,7 +11,7 @@ import { formatMillisecondsToDays, formatOrdarImg, formatPrice } from '~/lib/uti
 
 
 interface OrdarProps {
-    data: OrdersType
+    data: OrdersType[]
 }
 const OrdarsPage: FC<OrdarProps> = ({ data }) => {
 
@@ -34,7 +34,6 @@ const OrdarsPage: FC<OrdarProps> = ({ data }) => {
                             </thead>
                             <tbody>
                                 {data.map((d, i) => (
-
                                     <tr key={i}>
                                         <td>
                                             <div className="flex items-center space-x-3">
