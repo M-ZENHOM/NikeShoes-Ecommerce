@@ -1,4 +1,3 @@
-import type { FC } from 'react'
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { BiArrowBack } from "react-icons/bi";
@@ -9,10 +8,7 @@ import Image from "next/image";
 
 const SliderImages = [SliderOne, SliderTwo, SliderThree]
 
-
-
-
-const Hero: FC = () => {
+const Hero = () => {
     return (
         <Carousel
             autoPlay={true}

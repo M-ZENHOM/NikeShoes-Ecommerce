@@ -1,23 +1,17 @@
-
-import type { FC } from 'react'
 import ProductDetails from "~/components/ProductDetails";
-import ProductCarousel from "~/components/ProductCarousel";
+import ProductDetailsCarousel from "~/components/ProductDetailsCarousel";
 import type { GetServerSideProps } from 'next'
-import type { Data, ProductData } from "~/Types";
 import { getProduct } from "../api/products/[id]";
 import SEO from "~/components/SEO";
 import { ParsedUrlQuery } from 'querystring';
+import type { ProductType } from '~/Types';
 
-
-
-
-
-const ProductPage: FC<ProductData> = ({ data }) => {
+const ProductPage = ({ data }: { data: ProductType }) => {
     return (
         <div className="py-[100px] flex flex-col max-w-[1360px] w-full mx-auto ">
             <SEO title={data.title} desc={data.description} />
             <div className="flex  w-full mx-auto md:flex-col">
-                <ProductCarousel data={data} />
+                <ProductDetailsCarousel data={data} />
                 <ProductDetails data={data} />
             </div>
         </div>
@@ -30,7 +24,7 @@ interface IParams extends ParsedUrlQuery {
     id: string
 }
 export const getServerSideProps: GetServerSideProps<{
-    data: Data
+    data: ProductType
 }> = async (context) => {
     const { id } = context.params as IParams;
     try {

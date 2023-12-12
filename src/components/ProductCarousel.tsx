@@ -1,39 +1,32 @@
-import type { FC } from 'react'
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
-import type { ProductData } from "~/Types";
-import Image from 'next/image';
-
-
-const ProductCarousel: FC<ProductData> = ({ data }) => {
-
+import React from 'react'
+import Carousel from "react-multi-carousel";
+import type { ProductType } from '~/Types';
+import ProductCard from './ProductCard';
+import { responsiveCarousel } from '~/config/responsive';
+import "react-multi-carousel/lib/styles.css";
+export default function ProductCarousel({ data }: { data: ProductType[] }) {
     return (
-        <div className="text-white text-[20px] w-full max-w-[600px] mx-auto  top-[50px] lg:px-10">
+        <>
+            <div className='flex flex-col justify-center items-center space-y-4 my-5 pt-14 md:text-center'>
+                <h2 className='font-bold text-4xl md:text-2xl '>Explore more of our product</h2>
+                <p className='max-w-[25rem] w-full text-center text-gray-500 md:max-w-[20rem] '>All the collection we need, you can find from us without any hassle</p>
+            </div>
             <Carousel
-                infiniteLoop={true}
-                showIndicators={false}
-                showStatus={false}
-                thumbWidth={60}
-                renderThumbs={() =>
-                    data.images?.map((img, idx) => (
-                        <Image
-                            key={idx}
-                            src={img}
-                            width={500}
-                            height={600}
-                            alt="Thumbs imgs"
-                            priority
-                        />
-                    ))
-                }
-                className="productCarousel"
+                className='py-8'
+                responsive={responsiveCarousel}
+                containerClass="carousel-container"
+                itemClass="px-[10px]"
+                autoPlaySpeed={1500}
+                autoPlay={true}
+                infinite={true}
+                keyBoardControl={true}
+                customTransition="all .5"
+                transitionDuration={500}
             >
-                {data.images?.map((img: string, idx: number) => (
-                    <Image key={idx} width={500} height={500} src={img} alt="shoes image" priority />
+                {data.slice(0, 9).map((shoe: ProductType) => (
+                    <ProductCard key={shoe._id} shoe={shoe} />
                 ))}
             </Carousel>
-        </div>
+        </>
     )
 }
-
-export default ProductCarousel

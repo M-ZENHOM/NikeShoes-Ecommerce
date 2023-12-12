@@ -2,10 +2,10 @@ import type { StripeError } from "@stripe/stripe-js";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import type { ProductType } from "~/Types";
 import CartItems from "~/components/CartItems";
 import EmptyCart from "~/components/EmptyCart";
 import SEO from "~/components/SEO";
+import { TotalPrice, notifyMsg } from "~/lib/utils";
 import { useAppDispatch, useAppSelector } from "~/store/hooks";
 import { CLEAR_CART } from "~/store/slices/cart";
 import { getStripe } from "~/utils/getStripe";
@@ -14,11 +14,8 @@ const CartPage = () => {
     const cart = useAppSelector((state) => state.cart);
     const dispatch = useAppDispatch()
     const { data: session } = useSession();
+    const totalCartPrice = TotalPrice(cart)
 
-    const totalPrice = cart.reduce((acc: number, product: ProductType) => {
-        acc += product.price * product.quantity;
-        return acc;
-    }, 0);
 
     const createCheckoutSession = async (): Promise<void> => {
         const stripe = await getStripe();
@@ -28,12 +25,11 @@ const CartPage = () => {
             userId: session?.user.id
         })
 
-
         const result: { error: StripeError } | undefined = await stripe?.redirectToCheckout({
             sessionId: checkoutSession.data.id
         })
         if (result?.error) {
-            console.log(result.error);
+            notifyMsg(result.error.message!, 'error')
         }
 
     }
@@ -60,7 +56,7 @@ const CartPage = () => {
                             <div className="w-full bg-[#f2f2f2] p-5 rounded-xl">
                                 <div className="flex justify-between border-b-[1px] border-[#6d6d6d59] pb-2">
                                     <h2>SUBTOTAL</h2>
-                                    <p className="font-bold">{totalPrice}$</p>
+                                    <p className="font-bold">{totalCartPrice}$</p>
                                 </div>
                                 <p className="w-full py-4">
                                     The subtotal reflects the total price of your order, including

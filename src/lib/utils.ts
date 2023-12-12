@@ -1,7 +1,8 @@
 import axios, { AxiosResponse } from 'axios';
 import confetti from 'canvas-confetti';
-import { toast } from "react-toastify";
+import { TypeOptions, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ProductType } from '~/Types';
 
 
 
@@ -62,8 +63,9 @@ export const shootFireworks = (): void => {
 
 
 
-export const notifyMsg = (msg: string): void => {
+export const notifyMsg = (type: TypeOptions, msg: string): void => {
     toast.success(msg, {
+        type: type,
         position: "bottom-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -74,3 +76,12 @@ export const notifyMsg = (msg: string): void => {
         theme: "light",
     });
 };
+
+
+
+export const TotalPrice = (cart: ProductType[]): number => {
+    return cart.reduce((acc: number, product: ProductType) => {
+        acc += product.price * product.quantity;
+        return acc;
+    }, 0);
+}

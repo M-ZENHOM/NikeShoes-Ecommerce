@@ -4,7 +4,6 @@ import React from 'react'
 import type { ProductType } from '~/Types'
 
 
-
 interface ModelProps {
     shoe: ProductType
     setOpen: Dispatch<SetStateAction<boolean>>

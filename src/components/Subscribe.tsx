@@ -1,7 +1,4 @@
-import type { FC } from 'react'
-
-
-const FooterAction: FC = () => {
+const Subscribe = () => {
     return (
         <div className='w-full h-[30vh] max-w-2xl mx-auto my-16 flex flex-col justify-center items-center '>
             <div className='text-center space-y-2 mb-8'>
@@ -17,4 +14,4 @@ const FooterAction: FC = () => {
     )
 }
 
-export default FooterAction
+export default Subscribe

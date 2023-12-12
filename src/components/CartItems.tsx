@@ -1,12 +1,12 @@
 import { type FC } from 'react'
 import Image from "next/image";
 import { BsTrash3 } from "react-icons/bs";
-import type { ProductDataArr } from "~/Types";
 import { useAppDispatch } from "~/store/hooks";
 import { DELETE_FROM_CART, UPDATE_QUANTITY, UPDATE_SIZE } from "~/store/slices/cart";
+import { ProductType } from '~/Types';
 
 
-const CartItems: FC<ProductDataArr> = ({ data }) => {
+const CartItems: FC<{ data: ProductType[] }> = ({ data }) => {
     const dispatch = useAppDispatch()
     return <>
         {data.map((shoes) => (

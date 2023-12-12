@@ -1,6 +1,6 @@
 
-import { type FC, useTransition } from 'react'
-import type { ProductDataArr, ProductType } from '~/Types'
+import { useTransition } from 'react'
+import type { ProductType } from '~/Types'
 import { FaTrashAlt, FaRegEdit } from 'react-icons/fa'
 import Image from 'next/image'
 import axios from 'axios'
@@ -11,7 +11,7 @@ import { notifyMsg } from '~/lib/utils'
 import DashboardForm from './Forms/DashboardForm'
 
 
-const ProductsTable: FC<ProductDataArr> = ({ data }) => {
+const ProductsTable = ({ data }: { data: ProductType[] }) => {
     const [isPending, startTransition] = useTransition()
     const [open, setOpen] = React.useState<boolean>(false)
     const router = useRouter()
@@ -25,7 +25,7 @@ const ProductsTable: FC<ProductDataArr> = ({ data }) => {
         startTransition(async () => {
             await axios.put(`/api/products/${id}`, { title, description, price, category, images, thumbnail, size, sizes, userId, quantity });
             router.push(`/product/${id}`)
-            notifyMsg("Shoes Updated Succesfully!")
+            notifyMsg("success", "Shoes Updated Succesfully!")
         })
     }
     return (

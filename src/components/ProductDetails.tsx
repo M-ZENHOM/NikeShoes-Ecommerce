@@ -1,19 +1,12 @@
-
-import type { FC } from 'react'
-import { ToastContainer } from 'react-toastify';
-import type { ProductData } from "~/Types";
 import { useAppDispatch } from "~/store/hooks";
 import { ADD_TO_CART } from "~/store/slices/cart";
 import { notifyMsg } from "~/lib/utils";
 import { IoCartOutline } from 'react-icons/io5';
-import "react-toastify/dist/ReactToastify.css";
 import Link from 'next/link';
+import type { ProductType } from '~/Types';
 
-
-
-const ProductDetails: FC<ProductData> = ({ data }) => {
+const ProductDetails = ({ data }: { data: ProductType }) => {
     const dispatch = useAppDispatch()
-
     return (
         <div className="space-y-3 max-w-[600px] w-full md:text-center mx-auto md:mt-10 md:px-10">
             <h2 className="font-bold text-2xl">{data.title}</h2>
@@ -33,9 +26,10 @@ const ProductDetails: FC<ProductData> = ({ data }) => {
                 </div>
             </div>
             <button
-                onClick={() =>
-                    dispatch(ADD_TO_CART(data)) && notifyMsg("Added, Go check your cart now!")
-                }
+                onClick={() => {
+                    dispatch(ADD_TO_CART(data))
+                    notifyMsg("success", "Added, Go check your cart now!")
+                }}
                 className="w-full py-4 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75"
             >
                 Add To cart
@@ -47,8 +41,6 @@ const ProductDetails: FC<ProductData> = ({ data }) => {
                 Continue Shopping
                 <IoCartOutline size={20} />
             </Link>
-            <ToastContainer />
-
         </div>
     )
 }

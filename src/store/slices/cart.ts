@@ -3,7 +3,7 @@ import type { RootState } from '../index'
 import type { ProductType } from '~/Types';
 
 
-const initialState: Array<ProductType> = []
+const initialState: ProductType[] = []
 
 export const cartSlice = createSlice({
     name: 'cart',

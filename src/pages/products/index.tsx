@@ -1,7 +1,6 @@
 import type { GetServerSideProps } from 'next'
-import type { FC } from 'react'
 import React from 'react'
-import type { ProductDataArr, ProductType } from '~/Types'
+import type { ProductType } from '~/Types'
 import { getProducts } from '../api/products'
 import FilterData from '~/utils/FilterData'
 import ProductCardTwo from '~/components/ProductCardTwo'
@@ -11,7 +10,7 @@ import SEO from '~/components/SEO'
 
 
 
-const ProductsPage: FC<ProductDataArr> = ({ data }) => {
+const ProductsPage = ({ data }: { data: ProductType[] }) => {
     const [grid, setGrid] = React.useState<boolean>(true)
     const { filtered, handleSelect, handleChange, setCategoryQuery, AllData } = FilterData({ data: data });
 
