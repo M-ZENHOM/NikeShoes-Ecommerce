@@ -1,4 +1,3 @@
-
 import { useTransition } from 'react'
 import type { ProductType } from '~/Types'
 import { FaTrashAlt, FaRegEdit } from 'react-icons/fa'
@@ -7,8 +6,7 @@ import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import Model from './Model'
 import React from 'react'
-import { notifyMsg } from '~/lib/utils'
-import DashboardForm from './Forms/DashboardForm'
+import Link from 'next/link'
 
 
 const ProductsTable = ({ data }: { data: ProductType[] }) => {
@@ -21,20 +19,13 @@ const ProductsTable = ({ data }: { data: ProductType[] }) => {
             router.refresh()
         })
     }
-    const handleUpdate = (id: string, title: string, description: string, price: number, category: string, images: string[], thumbnail: string, sizes: string[], size: string, userId: string, quantity: number) => {
-        startTransition(async () => {
-            await axios.put(`/api/products/${id}`, { title, description, price, category, images, thumbnail, size, sizes, userId, quantity });
-            router.push(`/product/${id}`)
-            notifyMsg("success", "Shoes Updated Succesfully!")
-        })
-    }
     return (
         <>
             {data.length === 0 ?
                 (
                     <div className='flex flex-col space-y-8 md:text-center   items-center'>
                         <h2 className='text-xl my-5 font-bold'>No shoes have been added,Try to add one.</h2>
-                        <DashboardForm />
+                        <Link className='btn btn-primary' href="/dashboard/products/create-product">Add New Shoe</Link>
                     </div>
                 )
                 : (
@@ -74,7 +65,7 @@ const ProductsTable = ({ data }: { data: ProductType[] }) => {
                                                 <button onClick={() => handleDelete(shoe._id)} className='text-black hover:scale-110' disabled={isPending}><FaTrashAlt /></button>
                                                 <div onClick={() => setOpen(true)} className='text-black hover:scale-110 cursor-pointer'><FaRegEdit /></div>
                                             </div>
-                                            <Model handleUpdate={handleUpdate} shoe={shoe} open={open} setOpen={setOpen} />
+                                            <Model shoe={shoe} open={open} setOpen={setOpen} />
                                         </th>
                                     </tr>
                                 ))}

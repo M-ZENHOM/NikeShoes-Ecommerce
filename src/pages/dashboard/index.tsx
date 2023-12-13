@@ -29,9 +29,10 @@ const Dashboard: FC<DashboardLayoutProps> = ({ children }) => {
             <SEO title="Dashboard" desc="Here u can control all ur products" />
             <div className='flex flex-col h-fit sticky top-20 bg-base-100  p-4 py-8 z-10'>
                 <h2 className='font-bold text-xl text-center mb-3 md:text-center'>Dashboard</h2>
-                <div className="tabs tabs-boxed flex flex-col justify-start items-start p-8 md:p-2 md:flex-row">
+                <div className="tabs tabs-boxed flex flex-col  justify-start items-start p-8 md:p-2 md:flex-row">
                     <Link className={`tab ${pathname === "/dashboard/products" ? "tab-active" : ''}`} href="/dashboard/products">Products</Link>
                     <Link className={`tab ${pathname === "/dashboard/ordars" ? "tab-active" : ''}`} href="/dashboard/ordars">Ordars</Link>
+                    <Link className={`tab ${pathname === "/dashboard/products/create-product" ? "tab-active" : ''}`} href="/dashboard/products/create-product">Create Product</Link>
                 </div>
             </div>
             <div className="divider divider-horizontal md:divider-vertical" />

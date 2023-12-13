@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import React, { type FC } from 'react'
@@ -9,17 +8,9 @@ import { ProductSchema } from '~/lib/validations/ProductPost';
 import { CustomSelect, CustomSelectSize } from '../CustomSelect';
 import { useSession } from 'next-auth/react';
 import { sizes } from '~/config/products';
+import type { FormDataType } from '~/Types';
 
 
-
-type formData = {
-    title: string
-    price: number
-    quantity: number
-    description: string
-    category: string
-    size: string
-}
 const DashboardForm: FC = () => {
     const router = useRouter()
     const [isPending, startTransition] = React.useTransition()
@@ -29,21 +20,15 @@ const DashboardForm: FC = () => {
     const id = new Date().getMilliseconds();
     const { data: session } = useSession();
     const userId = session?.user.id;
-    const submitHanlder = (values: formData, actions: { resetForm: () => void; }) => {
-        const { title, category, description, price, quantity, size } = values
+    const submitHanlder = (values: FormDataType, actions: { resetForm: () => void; }) => {
         !thumbnail && !images ?
             setUploadError("Upload image frist!") :
             startTransition(async () => {
                 setUploadError('')
                 await axios.post('/api/products', {
-                    title,
-                    category,
-                    description,
-                    price,
-                    quantity,
+                    ...values,
                     thumbnail,
                     images,
-                    size,
                     id,
                     sizes,
                     userId,
@@ -52,7 +37,6 @@ const DashboardForm: FC = () => {
                 router.push('/products')
             })
     }
-
 
     return (
         <Formik

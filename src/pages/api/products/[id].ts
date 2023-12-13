@@ -1,10 +1,10 @@
-import { ObjectId } from "mongodb";
+import type { ObjectId } from "mongodb";
 import type { NextApiRequest, NextApiResponse } from "next";
 import type { ProductType } from "~/Types";
-import clientPromise from "~/lib/MongoDb";
+import clientPromise, { oID } from "~/lib/MongoDb";
 
 export const getProduct = async (id: string | ObjectId) => {
-    id = typeof id === 'string' ? new ObjectId(id) : id
+    id = typeof id === 'string' ? new oID(id) : id
     const mongoClient = await clientPromise;
     const data = await mongoClient
         .db()
@@ -15,7 +15,6 @@ export const getProduct = async (id: string | ObjectId) => {
 
 }
 export const userProducts = async (id: string | undefined) => {
-
     const mongoClient = await clientPromise;
     const data = await mongoClient
         .db()
@@ -27,7 +26,7 @@ export const userProducts = async (id: string | undefined) => {
 
 }
 export const paymentDetails = async (id: string | ObjectId) => {
-    id = typeof id === 'string' ? new ObjectId(id) : id
+    id = typeof id === 'string' ? new oID(id) : id
     const mongoClient = await clientPromise;
     const data = await mongoClient
         .db()
@@ -42,17 +41,17 @@ export const editProduct = async (
     id: string | ObjectId,
     product: ProductType
 ) => {
-    id = typeof id === 'string' ? new ObjectId(id) : id;
+    id = typeof id === 'string' ? new oID(id) : id;
     const mongoClient = await clientPromise;
 
     return await mongoClient
         .db()
         .collection('products')
-        .replaceOne({ _id: id }, product);
+        .updateOne({ _id: id }, { $set: product });
 };
 
 export const deleteProduct = async (id: string | ObjectId) => {
-    id = typeof id === 'string' ? new ObjectId(id) : id;
+    id = typeof id === 'string' ? new oID(id) : id;
     const mongoClient = await clientPromise;
 
     return await mongoClient
@@ -64,23 +63,20 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const { id } = req.query;
 
     if (req.method === ' GET') {
-
-        const data = await getProduct(new ObjectId(id as string))
-
+        const data = await getProduct(new oID(id as string))
         if (!data) {
             res.status(404).json("Product not found")
         }
 
-    } else if (req.method === 'PUT') {
+    } else if (req.method === 'PATCH') {
         const product = req.body;
+        console.log(product);
 
-        const data = await editProduct(id as string, product);
-
+        const data = await editProduct(id as string, { ...product });
         res.status(200).json({ modifiedCount: data.modifiedCount });
 
     } else if (req.method === 'DELETE') {
         const data = await deleteProduct(id as string);
-
         res.status(200).json({ deletedCount: data.deletedCount });
     }
 }

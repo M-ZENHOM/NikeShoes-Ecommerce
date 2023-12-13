@@ -23,3 +23,6 @@ export const ProductSchema = yup.object().shape({
         .required("Required"),
 
 });
+
+
+export type ProductSchemaType = yup.InferType<typeof ProductSchema>;

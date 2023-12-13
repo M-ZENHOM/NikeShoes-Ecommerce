@@ -1,6 +1,4 @@
-
-
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 
 if (!process.env.MONGODB_URI) {
     throw new Error("Please add your Mongo URI to .env.local");
@@ -24,5 +22,7 @@ if (process.env.NODE_ENV === "development") {
     const client = new MongoClient(uri);
     clientPromise = client.connect();
 }
+
+export const oID = ObjectId;
 
 export default clientPromise;

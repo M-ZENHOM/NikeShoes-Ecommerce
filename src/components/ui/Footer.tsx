@@ -2,9 +2,6 @@ import type { FC } from 'react'
 import { siteConfig } from "~/config/site"
 import MaxWidthWrapper from "../MaxWidthWrapper"
 
-
-
-
 const Footer: FC = () => {
     return (
         <footer className="footer bg-base-200  text-base-content">

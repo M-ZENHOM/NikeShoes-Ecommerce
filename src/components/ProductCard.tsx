@@ -4,11 +4,7 @@ import Link from 'next/link'
 import type { ProductType } from '~/Types'
 import { CgSearch } from 'react-icons/cg'
 
-interface ProductCardProps {
-    shoe: ProductType
-}
-
-const ProductCard: FC<ProductCardProps> = ({ shoe }) => {
+const ProductCard: FC<{ shoe: ProductType }> = ({ shoe }) => {
 
     return (
         <div className="card w-96 h-96 bg-base-300 shadow-xl md:w-80">

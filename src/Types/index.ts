@@ -13,17 +13,16 @@ export interface ProductType {
     sizes: string[]
     userId: string
 }
-export interface PostProduct {
-    id: number
+
+export type FormDataType = {
     title: string
-    description: string
     price: number
-    thumbnail: string
+    quantity: number
+    description: string
     category: string
-    images: []
     size: string
-    sizes: string[]
 }
+
 export type User = {
     id: string
     email: string

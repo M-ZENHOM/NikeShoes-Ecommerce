@@ -2,20 +2,14 @@ import type { FC } from 'react'
 import { SiNike } from 'react-icons/si'
 import Link from "next/link"
 import { useAppSelector } from "~/store/hooks";
-import type { ProductType, User } from "~/Types";
 import MaxWidthWrapper from "../MaxWidthWrapper";
 import React from 'react';
 import UserData from '~/utils/UserData';
-
-
+import { TotalPrice } from '~/lib/utils';
 
 const Navbar: FC = () => {
     const cart = useAppSelector((state) => state.cart);
-    const totalPrice = cart.reduce((acc: number, product: ProductType) => {
-        acc += product.price * product.quantity;
-        return acc;
-    }, 0);
-
+    const totalCartPrice = TotalPrice(cart);
     return (
         <div className="navbar bg-base-100 sticky top-0 z-50">
             <MaxWidthWrapper >
@@ -35,7 +29,7 @@ const Navbar: FC = () => {
                         <div tabIndex={0} className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow">
                             <div className="card-body">
                                 <span className="font-bold text-lg">{cart.length} Items</span>
-                                <span className="text-info">Subtotal: {totalPrice}$</span>
+                                <span className="text-info">Subtotal: {totalCartPrice}$</span>
                                 <div className="card-actions">
                                     <Link href="/cart" className="btn btn-primary btn-block">View cart</Link>
                                 </div>

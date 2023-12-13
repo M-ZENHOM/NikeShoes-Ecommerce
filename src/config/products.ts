@@ -3,11 +3,11 @@ export const sortOptions = [
     { label: "Price: High to low", value: "price-desc" },
     {
         label: "Alphabetical: A to Z",
-        value: "name-asc",
+        value: "a-z",
     },
     {
         label: "Alphabetical: Z to A",
-        value: "name-desc",
+        value: "z-a",
     },
 ]
 export const sizes = ["UK-10.5", "UK-11.5", "UK-12", "UK-12.5", "UK-13"]

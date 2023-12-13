@@ -1,23 +1,16 @@
-import type { FC } from 'react'
+import { SiArgos, SiArkecosystem, SiApostrophe, SiAral, SiAsciidoctor, SiAtandt, SiBigbasket, SiCoil, SiFfmpeg } from 'react-icons/si'
 
-interface IconProps {
-    Icon: JSX.Element
-    Name: string
-    Color: string
+export const Icons = {
+    argos: (props: { className?: string }) => <SiArgos {...props} />,
+    arkecosystem: (props: { className?: string }) => <SiArkecosystem {...props} />,
+    apostrophe: (props: { className?: string }) => <SiApostrophe {...props} />,
+    aral: (props: { className?: string }) => <SiAral {...props} />,
+    asciidoctor: (props: { className?: string }) => <SiAsciidoctor {...props} />,
+    atandt: (props: { className?: string }) => <SiAtandt {...props} />,
+    bigbasket: (props: { className?: string }) => <SiBigbasket {...props} />,
+    coil: (props: { className?: string }) => <SiCoil {...props} />,
+    ffmpeg: (props: { className?: string }) => <SiFfmpeg {...props} />,
 }
-
-const Icon: FC<IconProps> = ({ Icon, Color, Name }) => {
-    return <div className="w-[150px] py-2  my-3 flex flex-col items-center justify-center  hover:bg-base-100 hover:bg-opacity-70  hover:shadow-sm   transition-all duration-300 ">
-        <div className={`text-5xl ${Color}`}>
-            {Icon}
-        </div>
-        <div className="stat-value font-normal text-[18px] ">{Name}</div>
-    </div>
-}
-
-export default Icon
-
-
 
 
 

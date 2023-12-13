@@ -3,14 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { ProductType } from '~/Types'
 
-
-interface ProductCardProps {
-    shoe: ProductType
-}
-
-const ProductCardTwo: FC<ProductCardProps> = ({ shoe }) => {
-
-
+const ProductCardTwo: FC<{ shoe: ProductType }> = ({ shoe }) => {
     return (
         <div className="card w-full h-96  bg-base-100 shadow-xl image-full">
             <figure><Image src={shoe.thumbnail} width={500} height={500} priority alt="Shoes" /></figure>

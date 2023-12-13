@@ -3,12 +3,12 @@ import Dashboard from '..'
 import ProductsTable from '~/components/ProductsTable'
 import { GetServerSidePropsContext } from 'next'
 import { userProducts } from '~/pages/api/products/[id]'
-import type { ProductDataArr } from '~/Types'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '~/server/auth'
+import { ProductType } from '~/Types'
 
 
-const index: FC<ProductDataArr> = ({ data }) => {
+const index: FC<{ data: ProductType[] }> = ({ data }) => {
     return (
         <Dashboard>
             <ProductsTable data={data} />
