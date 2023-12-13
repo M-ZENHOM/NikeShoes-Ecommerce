@@ -10,8 +10,8 @@ export const getProducts = async (sort: "a-z" | "z-a" | "price-asc" | "price-des
     const data = (await mongoClient
         .db()
         .collection('products')
-        .find({ title: { $regex: searchQuery, $options: 'i' } })
-        .filter({ icategory: { $regex: categoryQuery, $options: 'i' } })
+        .find()
+        .filter({ category: { $regex: categoryQuery, $options: 'i' }, title: { $regex: searchQuery, $options: 'i' } })
         .sort({ title: sort === 'a-z' ? 1 : -1 })
         .limit(limit)
         .toArray());
